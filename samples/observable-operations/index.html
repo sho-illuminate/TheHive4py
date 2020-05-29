@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://thehive-project.github.io/thehive4py/reference/exceptions/" rel="canonical"/>
+<link href="https://thehive-project.github.io/thehive4py/samples/observable-operations/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="shortcut icon"/>
 <meta content="mkdocs-1.1.2, mkdocs-material-5.2.2" name="generator"/>
-<title>Exceptions - TheHive4py Documentation</title>
+<title>Observable operations - TheHive4py Documentation</title>
 <link href="../../assets/stylesheets/main.a2408e81.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.a46bcfb3.min.css" rel="stylesheet"/>
 <meta content="#2196f3" name="theme-color"/>
@@ -22,9 +22,6 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#exceptions">
-          Skip to content
-        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -43,7 +40,7 @@
           </span>
 <span class="md-header-nav__topic md-ellipsis">
             
-              Exceptions
+              Observable operations
             
           </span>
 </div>
@@ -117,8 +114,8 @@
       Home
     </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
 <label class="md-nav__link" for="nav-2">
       Reference
       <span class="md-nav__icon md-icon">
@@ -134,92 +131,35 @@
       </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../models/" title="Models">
+<a class="md-nav__link" href="../../reference/models/" title="Models">
       Models
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../auth/" title="Authentication">
+<a class="md-nav__link" href="../../reference/auth/" title="Authentication">
       Authentication
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/" title="API">
+<a class="md-nav__link" href="../../reference/api/" title="API">
       API
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../query/" title="Query DSL">
+<a class="md-nav__link" href="../../reference/query/" title="Query DSL">
       Query DSL
     </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-        Exceptions
-        <span class="md-nav__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"></path></svg>
-</span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./" title="Exceptions">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/exceptions/" title="Exceptions">
       Exceptions
     </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
-</span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions">
-    thehive4py.exceptions
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.AlertException">
-    AlertException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseException">
-    CaseException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseObservableException">
-    CaseObservableException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseTaskException">
-    CaseTaskException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseTemplateException">
-    CaseTemplateException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CustomFieldException">
-    CustomFieldException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.TheHiveException">
-    TheHiveException
-  </a>
 </li>
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
 <label class="md-nav__link" for="nav-3">
       Examples
       <span class="md-nav__icon md-icon">
@@ -235,27 +175,28 @@
       </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../samples/alert-operations/" title="Alert operations">
+<a class="md-nav__link" href="../alert-operations/" title="Alert operations">
       Alert operations
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../samples/case-operations/" title="Case operations">
+<a class="md-nav__link" href="../case-operations/" title="Case operations">
       Case operations
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../samples/task-operations/" title="Task operations">
+<a class="md-nav__link" href="../task-operations/" title="Task operations">
       Task operations
     </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../samples/observable-operations/" title="Observable operations">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="./" title="Observable operations">
       Observable operations
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../samples/admin-operations/" title="Admin operations">
+<a class="md-nav__link" href="../admin-operations/" title="Admin operations">
       Admin operations
     </a>
 </li>
@@ -277,131 +218,15 @@
 </div>
 </div>
 </div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
-</span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions">
-    thehive4py.exceptions
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.AlertException">
-    AlertException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseException">
-    CaseException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseObservableException">
-    CaseObservableException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseTaskException">
-    CaseTaskException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CaseTemplateException">
-    CaseTemplateException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.CustomFieldException">
-    CustomFieldException
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#thehive4py.exceptions.TheHiveException">
-    TheHiveException
-  </a>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/TheHive-Project/TheHive4py/edit/master/docs/reference/exceptions.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/TheHive-Project/TheHive4py/edit/master/docs/samples/observable-operations.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">#</a></h1>
-<div class="doc doc-object doc-module">
-<h2 class="hidden-toc" href="#thehive4py.exceptions" id="thehive4py.exceptions" style="visibility: hidden; width: 0; height: 0;">
-<a class="headerlink" href="#thehive4py.exceptions" title="Permanent link">#</a></h2>
-<div class="doc doc-contents first">
-<div class="doc doc-children">
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.AlertException">
-<code>AlertException</code>
-<a class="headerlink" href="#thehive4py.exceptions.AlertException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Exception raised by failure of API calls related to <code>Alert</code> handling</p>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.CaseException">
-<code>CaseException</code>
-<a class="headerlink" href="#thehive4py.exceptions.CaseException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Exception raised by failure of API calls related to <code>Case</code> handling</p>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.CaseObservableException">
-<code>CaseObservableException</code>
-<a class="headerlink" href="#thehive4py.exceptions.CaseObservableException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Exception raised by failure of API calls related to <code>Case Observable</code> handling</p>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.CaseTaskException">
-<code>CaseTaskException</code>
-<a class="headerlink" href="#thehive4py.exceptions.CaseTaskException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Exception raised by failure of API calls related to <code>Case Task</code> handling</p>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.CaseTemplateException">
-<code>CaseTemplateException</code>
-<a class="headerlink" href="#thehive4py.exceptions.CaseTemplateException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Exception raised by failure of API calls related to <code>Case Template</code> handling</p>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.CustomFieldException">
-<code>CustomFieldException</code>
-<a class="headerlink" href="#thehive4py.exceptions.CustomFieldException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Exception raised by failure of API calls related to <code>Custom Fields</code> handling</p>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="thehive4py.exceptions.TheHiveException">
-<code>TheHiveException</code>
-<a class="headerlink" href="#thehive4py.exceptions.TheHiveException" title="Permanent link">#</a></h2>
-<div class="doc doc-contents">
-<p>Base class for TheHive exceptions</p>
-</div>
-</div>
-</div>
-</div>
+<h1>Observable operations</h1>
+<div class="admonition missing">
+<p class="admonition-title">Missing</p>
+<p>TODO</p>
 </div>
 </article>
 </div>
@@ -410,7 +235,7 @@
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--prev" href="../query/" rel="prev" title="Query DSL">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../task-operations/" rel="prev" title="Task operations">
 <div class="md-footer-nav__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
 </div>
@@ -419,17 +244,17 @@
 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Query DSL
+                Task operations
               </div>
 </div>
 </a>
-<a class="md-footer-nav__link md-footer-nav__link--next" href="../../samples/alert-operations/" rel="next" title="Alert operations">
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../admin-operations/" rel="next" title="Admin operations">
 <div class="md-footer-nav__title">
 <div class="md-ellipsis">
 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Alert operations
+                Admin operations
               </div>
 </div>
 <div class="md-footer-nav__button md-icon">
