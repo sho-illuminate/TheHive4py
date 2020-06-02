@@ -22,7 +22,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#create-a-file-observable">
+<a class="md-skip" href="#code-samples-for-observable-operations">
           Skip to content
         </a>
 </div>
@@ -298,14 +298,16 @@
 <a class="md-content__button md-icon" href="https://github.com/TheHive-Project/TheHive4py/edit/master/docs/samples/observable-operations.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1>Observable operations</h1>
+<h1 id="code-samples-for-observable-operations">Code samples for observable operations<a class="headerlink" href="#code-samples-for-observable-operations" title="Permanent link">#</a></h1>
 <h2 id="create-a-file-observable">Create a file observable<a class="headerlink" href="#create-a-file-observable" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
 <span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">CaseObservable</span>
 
-<span class="c1"># Init the CaseObserablae object</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://127.0.0.1:9000'</span><span class="p">,</span> <span class="s1">'**YOUR_API_KEY**'</span><span class="p">)</span>
+
+<span class="c1"># Init the CaseObservable object</span>
 <span class="n">file_observable</span> <span class="o">=</span> <span class="n">CaseObservable</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'file'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">'pic.png'</span><span class="p">],</span>
     <span class="n">tlp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -336,7 +338,9 @@
 <span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
 <span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">CaseObservable</span>
 
-<span class="c1"># Init the CaseObserablae object</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://127.0.0.1:9000'</span><span class="p">,</span> <span class="s1">'**YOUR_API_KEY**'</span><span class="p">)</span>
+
+<span class="c1"># Init the CaseObservable object</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="n">CaseObservable</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'filename'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">'pic.png'</span><span class="p">],</span>
     <span class="n">tlp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -362,15 +366,55 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="get-all-observables-of-a-given-case">Get all observables of a given case<a class="headerlink" href="#get-all-observables-of-a-given-case" title="Permanent link">#</a></h2>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>TODO</p>
-</div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">CaseObservable</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://127.0.0.1:9000'</span><span class="p">,</span> <span class="s1">'**YOUR_API_KEY**'</span><span class="p">)</span>
+
+<span class="c1"># Call the API</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_case_observables</span><span class="p">(</span><span class="n">CASE_ID</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="p">{},</span> <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="s1">'-startDate'</span><span class="p">,</span> <span class="s1">'+ioc'</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+
+<span class="c1"># Display the result</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="c1"># Get response data</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="c1"># Display response data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Failure: </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="search-ip-observables-of-a-given-case">Search ip observables of a given case<a class="headerlink" href="#search-ip-observables-of-a-given-case" title="Permanent link">#</a></h2>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>TODO</p>
-</div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">CaseObservable</span>
+<span class="kn">from</span> <span class="nn">thehive4py.query</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">And</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://127.0.0.1:9000'</span><span class="p">,</span> <span class="s1">'**YOUR_API_KEY**'</span><span class="p">)</span>
+
+<span class="c1"># Build query</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="s1">'dataType'</span><span class="p">,</span> <span class="s1">'ip'</span><span class="p">),</span> <span class="n">Eq</span><span class="p">(</span><span class="s1">'ioc'</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+
+<span class="c1"># Call the API to search all case's ip observables marked as IOC, sort them by descending startDate</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_case_observables</span><span class="p">(</span><span class="n">CASE_ID</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="s1">'-startDate'</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+
+<span class="c1"># Display the result</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="c1"># Get response data</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="c1"># Display response data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Failure: </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
 </article>
 </div>
 </div>

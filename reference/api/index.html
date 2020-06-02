@@ -264,6 +264,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.get_case_tasks">
+    get_case_tasks()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.get_case_template">
     get_case_template()
   </a>
@@ -526,6 +531,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.get_case_task">
     get_case_task()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.get_case_tasks">
+    get_case_tasks()
   </a>
 </li>
 <li class="md-nav__item">
@@ -883,21 +893,21 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>639
-640
-641
-642
-643
-644
-645
-646
-647
-648
-649
-650
-651
-652
-653</pre>
+<pre><span></span>696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710</pre>
 </div>
 </td>
 <td class="code">
@@ -993,8 +1003,7 @@ create_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>152
-153
+<pre><span></span>153
 154
 155
 156
@@ -1013,7 +1022,8 @@ create_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 169
 170
 171
-172</pre>
+172
+173</pre>
 </div>
 </td>
 <td class="code">
@@ -1123,8 +1133,7 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>289
-290
+<pre><span></span>290
 291
 292
 293
@@ -1159,7 +1168,8 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 322
 323
 324
-325</pre>
+325
+326</pre>
 </div>
 </td>
 <td class="code">
@@ -1293,8 +1303,7 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>201
-202
+<pre><span></span>202
 203
 204
 205
@@ -1317,7 +1326,8 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 222
 223
 224
-225</pre>
+225
+226</pre>
 </div>
 </td>
 <td class="code">
@@ -1361,37 +1371,113 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 create_case_template<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_template</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_case_template" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param case_template: The case template
-:type case_template: CaseTemplate defined in models.py
-:return: TheHive case template
-:rtype: requests.Reponse</p>
+<p>Create a case template</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case_template</code></td>
+<td><code>CaseTemplate</code></td>
+<td>
+<p>Case template's name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the case template</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTemplateException</code></td>
+<td>
+<p>An error occured during case template fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565</pre>
+<pre><span></span>595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">create_case_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_template</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Create a case template</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case_template (CaseTemplate): Case template's name</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the case template</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTemplateException: An error occured during case template fetch</span>
+<span class="sd">    """</span>
 
     <span class="sd">"""</span>
 <span class="sd">    :param case_template: The case template</span>
@@ -1429,28 +1515,28 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>576
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593
-594
-595
-596
-597</pre>
+<pre><span></span>633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654</pre>
 </div>
 </td>
 <td class="code">
@@ -1561,8 +1647,7 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>258
-259
+<pre><span></span>259
 260
 261
 262
@@ -1590,7 +1675,8 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 284
 285
 286
-287</pre>
+287
+288</pre>
 </div>
 </td>
 <td class="code">
@@ -1709,9 +1795,7 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>395
-396
-397
+<pre><span></span>397
 398
 399
 400
@@ -1729,7 +1813,9 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 412
 413
 414
-415</pre>
+415
+416
+417</pre>
 </div>
 </td>
 <td class="code">
@@ -1747,8 +1833,8 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 
 <span class="sd">    Raises:</span>
 <span class="sd">        CaseException: An error occured during case deletion</span>
-<span class="sd">    """</span>      <br/>
-<span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">force</span><span class="p">:</span>
         <span class="n">req</span> <span class="o">+=</span> <span class="s1">'/force'</span>
     <span class="k">try</span><span class="p">:</span>
@@ -1777,13 +1863,13 @@ find_alerts<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>720
-721
-722
-723
-724
-725
-726</pre>
+<pre><span></span>777
+778
+779
+780
+781
+782
+783</pre>
 </div>
 </td>
 <td class="code">
@@ -1809,28 +1895,121 @@ find_alerts<span class="p">(</span><span class="bp">self</span><span class="p">,
 find_case_templates<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.find_case_templates" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:return: list of case templates
-:rtype: json</p>
+<p>Find case templates using a query, sort and pagination</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td><code>dict</code></td>
+<td>
+<p>A query object, defined in JSON format or using utiliy methods from thehive4py.query module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td><code>Array</code></td>
+<td>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>str</code></td>
+<td>
+<p>A rnge describing the number of rows to be returned</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array of case templates</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TheHiveException</code></td>
+<td>
+<p>An error occured during case template search</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>518
-519
-520
-521
-522
-523</pre>
+<pre><span></span>546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">find_case_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">        :return: list of case templates</span>
-<span class="sd">        :rtype: json</span>
+<span class="sd">    Find case templates using a query, sort and pagination</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
+<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array of case templates</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TheHiveException: An error occured during case template search</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/case/template/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
 </code></pre>
@@ -1871,7 +2050,8 @@ find_cases<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <td><code>sort</code></td>
 <td><code>Array</code></td>
 <td>
-<p>Case identifier</p>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1925,8 +2105,7 @@ find_cases<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>378
-379
+<pre><span></span>379
 380
 381
 382
@@ -1940,7 +2119,9 @@ find_cases<span class="p">(</span><span class="bp">self</span><span class="p">,<
 390
 391
 392
-393</pre>
+393
+394
+395</pre>
 </div>
 </td>
 <td class="code">
@@ -1951,7 +2132,8 @@ find_cases<span class="p">(</span><span class="bp">self</span><span class="p">,<
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
-<span class="sd">        sort (Array): Case identifier</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
 <span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
@@ -1999,7 +2181,8 @@ find_first<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <td><code>sort</code></td>
 <td><code>Array</code></td>
 <td>
-<p>Case identifier</p>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2053,9 +2236,7 @@ find_first<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>417
-418
-419
+<pre><span></span>419
 420
 421
 422
@@ -2068,7 +2249,10 @@ find_first<span class="p">(</span><span class="bp">self</span><span class="p">,<
 429
 430
 431
-432</pre>
+432
+433
+434
+435</pre>
 </div>
 </td>
 <td class="code">
@@ -2079,7 +2263,8 @@ find_first<span class="p">(</span><span class="bp">self</span><span class="p">,<
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
-<span class="sd">        sort (Array): Case identifier</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
 <span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
@@ -2111,13 +2296,13 @@ find_tasks<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>790
-791
-792
-793
-794
-795
-796</pre>
+<pre><span></span>847
+848
+849
+850
+851
+852
+853</pre>
 </div>
 </td>
 <td class="code">
@@ -2152,18 +2337,18 @@ get_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>707
-708
-709
-710
-711
-712
-713
-714
-715
-716
-717
-718</pre>
+<pre><span></span>764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775</pre>
 </div>
 </td>
 <td class="code">
@@ -2256,8 +2441,7 @@ get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>357
-358
+<pre><span></span>358
 359
 360
 361
@@ -2275,7 +2459,8 @@ get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 373
 374
 375
-376</pre>
+376
+377</pre>
 </div>
 </td>
 <td class="code">
@@ -2330,7 +2515,7 @@ get_case_observables<span class="p">(</span><span class="bp">self</span><span cl
 <td><code>case_id</code></td>
 <td><code>str</code></td>
 <td>
-<p>Id of the case </p>
+<p>Id of the case</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2346,7 +2531,8 @@ get_case_observables<span class="p">(</span><span class="bp">self</span><span cl
 <td><code>sort</code></td>
 <td><code>Array</code></td>
 <td>
-<p>Case identifier</p>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2400,10 +2586,7 @@ get_case_observables<span class="p">(</span><span class="bp">self</span><span cl
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>434
-435
-436
-437
+<pre><span></span>437
 438
 439
 440
@@ -2442,7 +2625,11 @@ get_case_observables<span class="p">(</span><span class="bp">self</span><span cl
 473
 474
 475
-476</pre>
+476
+477
+478
+479
+480</pre>
 </div>
 </td>
 <td class="code">
@@ -2453,9 +2640,10 @@ get_case_observables<span class="p">(</span><span class="bp">self</span><span cl
 <span class="sd">    Find observables of a given case identified by its id</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case_id (str): Id of the case </span>
+<span class="sd">        case_id (str): Id of the case</span>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
-<span class="sd">        sort (Array): Case identifier</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
 <span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
@@ -2513,18 +2701,18 @@ get_case_task<span class="p">(</span><span class="bp">self</span><span class="p"
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>599
-600
-601
-602
-603
-604
-605
-606
-607
-608
-609
-610</pre>
+<pre><span></span>656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667</pre>
 </div>
 </td>
 <td class="code">
@@ -2550,44 +2738,294 @@ get_case_task<span class="p">(</span><span class="bp">self</span><span class="p"
 </div>
 </div>
 <div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.get_case_template">
+<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.get_case_tasks">
 <code class="highlight language-python">
-get_case_template<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> </code>
-<a class="headerlink" href="#thehive4py.api.TheHiveApi.get_case_template" title="Permanent link">#</a></h3>
+get_case_tasks<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.api.TheHiveApi.get_case_tasks" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param name: Case template name
-:return: TheHive case template
-:rtype: json</p>
+<p>Find tasks of a given case identified by its id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the case</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>dict</code></td>
+<td>
+<p>A query object, defined in JSON format or using utiliy methods from thehive4py.query module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td><code>Array</code></td>
+<td>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>str</code></td>
+<td>
+<p>A rnge describing the number of rows to be returned</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array of case task.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTaskException</code></td>
+<td>
+<p>An error occured during case task search</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544
-545
-546
-547
-548</pre>
+<pre><span></span>482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_case_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Find tasks of a given case identified by its id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case_id (str): Id of the case</span>
+<span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
+<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array of case task.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTaskException: An error occured during case task search</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/_search"</span>
+
+    <span class="c1"># Add range and sort parameters</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"range"</span><span class="p">:</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"range"</span><span class="p">,</span> <span class="s2">"all"</span><span class="p">),</span>
+        <span class="s2">"sort"</span><span class="p">:</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"sort"</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Add body</span>
+    <span class="n">parent_criteria</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="s1">'case'</span><span class="p">,</span> <span class="n">Id</span><span class="p">(</span><span class="n">case_id</span><span class="p">))</span>
+
+    <span class="c1"># Append the custom query if specified</span>
+    <span class="k">if</span> <span class="s2">"query"</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">parent_criteria</span><span class="p">,</span> <span class="n">attributes</span><span class="p">[</span><span class="s2">"query"</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="n">parent_criteria</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"query"</span><span class="p">:</span> <span class="n">criteria</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case tasks search error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.get_case_template">
+<code class="highlight language-python">
+get_case_template<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.api.TheHiveApi.get_case_template" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Get a case template by its name</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>Case template's name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the case template</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTemplateException</code></td>
+<td>
+<p>An error occured during case template fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593</pre>
 </div>
 </td>
 <td class="code">
@@ -2595,10 +3033,16 @@ get_case_template<span class="p">(</span><span class="bp">self</span><span class
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_case_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 
     <span class="sd">"""</span>
-<span class="sd">    :param name: Case template name</span>
-<span class="sd">    :return: TheHive case template</span>
-<span class="sd">    :rtype: json</span>
+<span class="sd">    Get a case template by its name</span>
 
+<span class="sd">    Arguments:</span>
+<span class="sd">        name (str): Case template's name</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the case template</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTemplateException: An error occured during case template fetch</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/template/_search"</span>
@@ -2671,8 +3115,7 @@ get_current_user<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>135
-136
+<pre><span></span>136
 137
 138
 139
@@ -2686,7 +3129,8 @@ get_current_user<span class="p">(</span><span class="bp">self</span><span class=
 147
 148
 149
-150</pre>
+150
+151</pre>
 </div>
 </td>
 <td class="code">
@@ -2721,36 +3165,103 @@ get_current_user<span class="p">(</span><span class="bp">self</span><span class=
 get_linked_cases<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.get_linked_cases" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param case_id: Case identifier
-:return: TheHive case(s)
-:rtype: json</p>
+<p>Find related cases of a given case identified by its id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the case</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array of related cases.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseException</code></td>
+<td>
+<p>An error occured during case links fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>505
-506
-507
-508
-509
-510
-511
-512
-513
-514
-515
-516</pre>
+<pre><span></span>526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_linked_cases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    :param case_id: Case identifier</span>
-<span class="sd">    :return: TheHive case(s)</span>
-<span class="sd">    :rtype: json</span>
+<span class="sd">    Find related cases of a given case identified by its id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case_id (str): Id of the case</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array of related cases.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseException: An error occured during case links fetch</span>
 <span class="sd">    """</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">/links"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
 
@@ -2781,18 +3292,18 @@ get_task_log<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>612
-613
-614
-615
-616
-617
-618
-619
-620
-621
-622
-623</pre>
+<pre><span></span>669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680</pre>
 </div>
 </td>
 <td class="code">
@@ -2832,19 +3343,19 @@ get_task_logs<span class="p">(</span><span class="bp">self</span><span class="p"
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>625
-626
-627
-628
-629
-630
-631
-632
-633
-634
-635
-636
-637</pre>
+<pre><span></span>682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694</pre>
 </div>
 </td>
 <td class="code">
@@ -2917,8 +3428,7 @@ health<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>119
-120
+<pre><span></span>120
 121
 122
 123
@@ -2931,7 +3441,8 @@ health<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 130
 131
 132
-133</pre>
+133
+134</pre>
 </div>
 </td>
 <td class="code">
@@ -2974,18 +3485,18 @@ mark_alert_as_read<span class="p">(</span><span class="bp">self</span><span clas
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>655
-656
-657
-658
-659
-660
-661
-662
-663
-664
-665
-666</pre>
+<pre><span></span>712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723</pre>
 </div>
 </td>
 <td class="code">
@@ -3025,18 +3536,18 @@ mark_alert_as_unread<span class="p">(</span><span class="bp">self</span><span cl
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>668
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679</pre>
+<pre><span></span>725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736</pre>
 </div>
 </td>
 <td class="code">
@@ -3078,27 +3589,27 @@ promote_alert_to_case<span class="p">(</span><span class="bp">self</span><span c
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>748
-749
-750
-751
-752
-753
-754
-755
-756
-757
-758
-759
-760
-761
-762
-763
-764
-765
-766
-767
-768</pre>
+<pre><span></span>805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825</pre>
 </div>
 </td>
 <td class="code">
@@ -3148,25 +3659,25 @@ run_analyzer<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>770
-771
-772
-773
-774
-775
-776
-777
-778
-779
-780
-781
-782
-783
-784
-785
-786
-787
-788</pre>
+<pre><span></span>827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845</pre>
 </div>
 </td>
 <td class="code">
@@ -3215,31 +3726,31 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>681
-682
-683
-684
-685
-686
-687
-688
-689
-690
-691
-692
-693
-694
-695
-696
-697
-698
-699
-700
-701
-702
-703
-704
-705</pre>
+<pre><span></span>738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762</pre>
 </div>
 </td>
 <td class="code">
@@ -3353,8 +3864,7 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>174
-175
+<pre><span></span>175
 176
 177
 178
@@ -3378,7 +3888,8 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 196
 197
 198
-199</pre>
+199
+200</pre>
 </div>
 </td>
 <td class="code">
@@ -3493,8 +4004,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>327
-328
+<pre><span></span>328
 329
 330
 331
@@ -3521,7 +4031,8 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 352
 353
 354
-355</pre>
+355
+356</pre>
 </div>
 </td>
 <td class="code">
@@ -3578,25 +4089,25 @@ update_case_observables<span class="p">(</span><span class="bp">self</span><span
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>728
-729
-730
-731
-732
-733
-734
-735
-736
-737
-738
-739
-740
-741
-742
-743
-744
-745
-746</pre>
+<pre><span></span>785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803</pre>
 </div>
 </td>
 <td class="code">
@@ -3704,8 +4215,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>227
-228
+<pre><span></span>228
 229
 230
 231
@@ -3733,7 +4243,8 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 253
 254
 255
-256</pre>
+256
+257</pre>
 </div>
 </td>
 <td class="code">

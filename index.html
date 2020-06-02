@@ -344,7 +344,7 @@
 <p>For example, a SOC may ask its constituency to send suspicious email reports to a specific mailbox that a script polls at regular intervals. When a new email is received, the script parses it then calls TheHive4py to create a corresponding alert in TheHive. Once the alert is raised, SOC analysts will get a notification thanks to TheHive's live stream so they can preview it and import it if deemed worth investigating using a specific template.</p>
 <h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">#</a></h2>
 <p>TheHive4py allows the following features:</p>
-<div class="tabbed-set" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">Authentication</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">Authentication</label><div class="tabbed-content">
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/auth#thehive4py.auth.BearerAuth">Using and API key</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/auth#thehive4py.auth.BasicAuth">Using a username/password pair</a></li>
@@ -364,6 +364,7 @@
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_case">Create case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.update_case">Update case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.delete_case">Delete case</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.get_linked_case">Get related cases</a></li>
 </ul>
 </div>
 <input id="__tabbed_1_4" name="__tabbed_1" type="radio"/><label for="__tabbed_1_4">Tasks</label><div class="tabbed-content">
@@ -383,6 +384,14 @@
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete observable</li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run analyzer on observable</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on observable</li>
+</ul>
+</div>
+<input id="__tabbed_1_6" name="__tabbed_1" type="radio"/><label for="__tabbed_1_6">Administration</label><div class="tabbed-content">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.find_case_templates">Search for Case templates</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.get_case_template">Get Case template by name</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.create_case_template">Create Case templates</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create custom fields</li>
 </ul>
 </div>
 </input></input></div>
