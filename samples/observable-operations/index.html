@@ -22,6 +22,9 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
+<a class="md-skip" href="#create-a-file-observable">
+          Skip to content
+        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -191,9 +194,45 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        Observable operations
+        <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"></path></svg>
+</span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./" title="Observable operations">
       Observable operations
     </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-a-file-observable">
+    Create a file observable
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-a-domain-observable">
+    Create a domain observable
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get-all-observables-of-a-given-case">
+    Get all observables of a given case
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#search-ip-observables-of-a-given-case">
+    Search ip observables of a given case
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../admin-operations/" title="Admin operations">
@@ -218,12 +257,116 @@
 </div>
 </div>
 </div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-a-file-observable">
+    Create a file observable
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-a-domain-observable">
+    Create a domain observable
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get-all-observables-of-a-given-case">
+    Get all observables of a given case
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#search-ip-observables-of-a-given-case">
+    Search ip observables of a given case
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <a class="md-content__button md-icon" href="https://github.com/TheHive-Project/TheHive4py/edit/master/docs/samples/observable-operations.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
 <h1>Observable operations</h1>
+<h2 id="create-a-file-observable">Create a file observable<a class="headerlink" href="#create-a-file-observable" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">CaseObservable</span>
+
+<span class="c1"># Init the CaseObserablae object</span>
+<span class="n">file_observable</span> <span class="o">=</span> <span class="n">CaseObservable</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'file'</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">'pic.png'</span><span class="p">],</span>
+    <span class="n">tlp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'thehive4py'</span><span class="p">],</span>
+    <span class="n">message</span><span class="o">=</span><span class="s1">'test'</span>
+<span class="p">)</span>
+
+<span class="c1"># Call the API</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_case_observable</span><span class="p">(</span><span class="n">CASE_ID</span><span class="p">,</span> <span class="n">file_observable</span><span class="p">)</span>
+
+<span class="c1"># Display the result</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span><span class="p">:</span>
+    <span class="c1"># Get response data</span>
+    <span class="n">observableJson</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="c1"># Display response data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">observableJson</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Failure: </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="create-a-domain-observable">Create a domain observable<a class="headerlink" href="#create-a-domain-observable" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">CaseObservable</span>
+
+<span class="c1"># Init the CaseObserablae object</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">CaseObservable</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'filename'</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">'pic.png'</span><span class="p">],</span>
+    <span class="n">tlp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'thehive4py'</span><span class="p">],</span>
+    <span class="n">message</span><span class="o">=</span><span class="s1">'test'</span>
+<span class="p">)</span>
+
+<span class="c1"># Call the API</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_case_observable</span><span class="p">(</span><span class="n">CASE_ID</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+
+<span class="c1"># Display the result</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span><span class="p">:</span>
+    <span class="c1"># Get response data</span>
+    <span class="n">observableJson</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="c1"># Display response data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">observableJson</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Failure: </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="get-all-observables-of-a-given-case">Get all observables of a given case<a class="headerlink" href="#get-all-observables-of-a-given-case" title="Permanent link">#</a></h2>
+<div class="admonition missing">
+<p class="admonition-title">Missing</p>
+<p>TODO</p>
+</div>
+<h2 id="search-ip-observables-of-a-given-case">Search ip observables of a given case<a class="headerlink" href="#search-ip-observables-of-a-given-case" title="Permanent link">#</a></h2>
 <div class="admonition missing">
 <p class="admonition-title">Missing</p>
 <p>TODO</p>

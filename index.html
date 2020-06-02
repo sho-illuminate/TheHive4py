@@ -132,13 +132,13 @@
     </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#installation">
-    Installation
+<a class="md-nav__link" href="#features">
+    Features
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#features">
-    Features
+<a class="md-nav__link" href="#installation">
+    Installation
   </a>
 </li>
 <li class="md-nav__item">
@@ -289,13 +289,13 @@
     </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#installation">
-    Installation
+<a class="md-nav__link" href="#features">
+    Features
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#features">
-    Features
+<a class="md-nav__link" href="#installation">
+    Installation
   </a>
 </li>
 <li class="md-nav__item">
@@ -342,27 +342,55 @@
 <p>TheHive4py is a Python API client for <a href="https://thehive-project.org/">TheHive</a>, a scalable 3-in-1 open source and free security incident response platform designed to make life easier for SOCs, CSIRTs, CERTs and any information security practitioner dealing with security incidents that need to be investigated and acted upon swiftly.</p>
 <p>TheHive4py allows analysts to send alerts to TheHive out of different sources. Those alerts can then be previewed and imported into cases using pre-defined templates.</p>
 <p>For example, a SOC may ask its constituency to send suspicious email reports to a specific mailbox that a script polls at regular intervals. When a new email is received, the script parses it then calls TheHive4py to create a corresponding alert in TheHive. Once the alert is raised, SOC analysts will get a notification thanks to TheHive's live stream so they can preview it and import it if deemed worth investigating using a specific template.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p>On macOS and Linux, type:
-<div class="highlight"><pre><span></span><code>sudo pip install thehive4py
-</code></pre></div></p>
-<p>If you are using Python on a Windows operating system, please forgo the <code>sudo</code> command.</p>
 <h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">#</a></h2>
 <p>TheHive4py allows the following features:</p>
-<ul>
-<li>Authentication</li>
-<li>Using and API key</li>
-<li>Using a username/password pair</li>
-<li>Case managmement</li>
-<li>Search for cases</li>
-<li><a href="reference/api#thehive4py.api.TheHiveApi.create_case">Create cases</a></li>
-<li>Update cases</li>
-<li>Delete cases</li>
-<li>Search for tasks</li>
-<li>Create and update tasks</li>
-<li>Delete tasks</li>
-<li>Alert management</li>
+<div class="tabbed-set" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">Authentication</label><div class="tabbed-content">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/auth#thehive4py.auth.BearerAuth">Using and API key</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/auth#thehive4py.auth.BasicAuth">Using a username/password pair</a></li>
 </ul>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Alerts</label><div class="tabbed-content">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/api#thehive4py.api.TheHiveApi.find_alerts">Search for alerts</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_alert">Create alert</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.update_alert">Update alert</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete alert</li>
+</ul>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio"/><label for="__tabbed_1_3">Cases</label><div class="tabbed-content">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.find_cases">Search for cases</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_case">Create case</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.update_case">Update case</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.delete_case">Delete case</a></li>
+</ul>
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio"/><label for="__tabbed_1_4">Tasks</label><div class="tabbed-content">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Search for tasks</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create and update tasks</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete tasks</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create task log</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on task</li>
+</ul>
+</div>
+<input id="__tabbed_1_5" name="__tabbed_1" type="radio"/><label for="__tabbed_1_5">Observables</label><div class="tabbed-content">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Search for observables</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create observable</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Update observable</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete observable</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run analyzer on observable</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on observable</li>
+</ul>
+</div>
+</input></input></div>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
+<p>On macOS and Linux, type:</p>
+<div class="highlight"><pre><span></span><code>sudo pip install thehive4py
+</code></pre></div>
+<p>If you are using Python on a Windows operating system, please forgo the <code>sudo</code> command.</p>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">#</a></h2>
 <p>TheHive4py is an open source and free software released under the <a href="https://github.com/TheHive-Project/TheHive/blob/master/LICENSE">AGPL</a> (Affero General Public License). We, TheHive Project, are committed to ensure that TheHive4py will remain a free and open source project on the long-run.</p>
 <h2 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">#</a></h2>
