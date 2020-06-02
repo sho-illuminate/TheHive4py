@@ -229,6 +229,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.find_cases">
+    find_cases()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.find_first">
     find_first()
   </a>
@@ -489,6 +494,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.find_cases">
+    find_cases()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.find_first">
     find_first()
   </a>
@@ -698,31 +708,163 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 </tr>
 </tbody>
 </table>
-<p>??? note "Basic example"
-    Example of simple usage: call TheHive APIs using an API key, without proxy, nor organisation</p>
-<div class="codehilite">
-<pre><span></span><code><span class="err">```python</span>
-<span class="err">api = TheHiveApi('http://my_thehive:9000', 'my_api_key')</span>
-<span class="err">```</span>
+<details class="note"><summary>Examples</summary><div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">Basic</label><div class="tabbed-content">
+<p>Example of simple usage: call TheHive APIs using an API key, without proxy, nor organisation</p>
+<div class="highlight">
+<pre><span></span><code><span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://my_thehive:9000'</span><span class="p">,</span> <span class="s1">'my_api_key'</span><span class="p">)</span>
 </code></pre>
 </div>
-<p>??? note "Full example"
-    Example using all the options: call TheHive APIs using an API key, with orgnisation, proxy and sst certificate</p>
-<div class="codehilite">
-<pre><span></span><code><span class="err">```python</span>
-<span class="err">proxies = {</span>
-<span class="err">    "http: "http://my_proxy:8080"</span>
-<span class="err">    "https: "http://my_proxy:8080"</span>
-<span class="err">}</span>
-<span class="err">api = TheHiveApi('http://my_thehive:9000', </span>
-<span class="err">    'my_api_key', </span>
-<span class="err">    organisation='my-org', </span>
-<span class="err">    proxies=proxies, </span>
-<span class="err">    cert=True</span>
-<span class="err">)</span>
-<span class="err">```</span>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Full options</label><div class="tabbed-content">
+<p>Example using all the options: call TheHive APIs using an API key, with orgnisation, proxy and sst certificate</p>
+<div class="highlight">
+<pre><span></span><code><span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"http: "</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my_proxy</span><span class="p">:</span><span class="mi">8080</span><span class="s2">"</span>
+    <span class="s2">"https: "</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my_proxy</span><span class="p">:</span><span class="mi">8080</span><span class="s2">"</span>
+<span class="p">}</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://my_thehive:9000'</span><span class="p">,</span>
+    <span class="s1">'my_api_key'</span><span class="p">,</span>
+    <span class="n">organisation</span><span class="o">=</span><span class="s1">'my-org'</span><span class="p">,</span>
+    <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span>
+    <span class="n">cert</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 </code></pre>
 </div>
+</div>
+</input></input></div>
+</details>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">principal</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="p">{},</span> <span class="n">cert</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Python API client for TheHive.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        url (str): URL of Thehive instance, including the port. Ex: `http://myserver:9000`</span>
+<span class="sd">        principal (str): The API key, or the username if basic authentication is used.</span>
+<span class="sd">        password (str): The password for basic authentication or None. Defaults to None</span>
+<span class="sd">        organisation (str): The name of the organisation against which api calls will be run. Defaults to None</span>
+<span class="sd">        proxies (dict): The proxy configuration, would have `http` and `https` attributes. Defaults to {}</span>
+<span class="sd">            ```python</span>
+<span class="sd">            proxies: {</span>
+<span class="sd">                "http: "http://my_proxy:8080"</span>
+<span class="sd">                "https: "http://my_proxy:8080"</span>
+<span class="sd">            }</span>
+<span class="sd">            ```</span>
+<span class="sd">        cert (bool): Wether or not to enable SSL certificate validation</span>
+
+
+<span class="sd">    ??? note "Examples"</span>
+<span class="sd">        === "Basic"</span>
+<span class="sd">            Example of simple usage: call TheHive APIs using an API key, without proxy, nor organisation</span>
+
+<span class="sd">            ```python</span>
+<span class="sd">            api = TheHiveApi('http://my_thehive:9000', 'my_api_key')</span>
+<span class="sd">            ```</span>
+
+<span class="sd">        === "Full options"</span>
+<span class="sd">            Example using all the options: call TheHive APIs using an API key, with orgnisation, proxy and sst certificate</span>
+
+<span class="sd">            ```python</span>
+<span class="sd">            proxies = {</span>
+<span class="sd">                "http: "http://my_proxy:8080"</span>
+<span class="sd">                "https: "http://my_proxy:8080"</span>
+<span class="sd">            }</span>
+<span class="sd">            api = TheHiveApi('http://my_thehive:9000',</span>
+<span class="sd">                'my_api_key',</span>
+<span class="sd">                organisation='my-org',</span>
+<span class="sd">                proxies=proxies,</span>
+<span class="sd">                cert=True</span>
+<span class="sd">            )</span>
+<span class="sd">            ```</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">principal</span> <span class="o">=</span> <span class="n">principal</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="o">=</span> <span class="n">proxies</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span> <span class="o">=</span> <span class="n">organisation</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">BasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">principal</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">BearerAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">principal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">cert</span> <span class="o">=</span> <span class="n">cert</span>
+
+    <span class="c1"># Create a CaseHelper instance</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">case</span> <span class="o">=</span> <span class="n">CaseHelper</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -735,6 +877,52 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 :type alert: Alert defined in models.py
 :return: TheHive alert
 :rtype: requests.Response</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_alert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    :param alert: TheHive alert</span>
+<span class="sd">    :type alert: Alert defined in models.py</span>
+<span class="sd">    :return: TheHive alert</span>
+<span class="sd">    :rtype: requests.Response</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert"</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">alert</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">excludes</span><span class="o">=</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Alert create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -743,10 +931,120 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 create_case<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_case" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param case: The case details
-:type case: Case defined in models.py
-:return: TheHive case
-:rtype: requests.Response</p>
+<p>Create a case</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case</code></td>
+<td><code>Case</code></td>
+<td>
+<p>The case object as defined in models.my</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseException</code></td>
+<td>
+<p>An error occured during case creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Create a case</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case (Case): The case object as defined in models.my</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseException: An error occured during case creation</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case"</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">case</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">excludes</span><span class="o">=</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseException</span><span class="p">(</span><span class="s2">"Case create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -755,11 +1053,160 @@ create_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 create_case_observable<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="n">case_observable</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_case_observable" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param case_id: Case identifier
-:param case_observable: TheHive observable
-:type case_observable: CaseObservable defined in models.py
-:return: TheHive observable
-:rtype: requests.Response</p>
+<p>Create a case observable</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case_id</code></td>
+<td><code></code></td>
+<td>
+<p>Case identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>case_observable</code></td>
+<td><code>CaseObservable</code></td>
+<td>
+<p>as defined in models.py</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case observable</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseObservableException</code></td>
+<td>
+<p>An error occured during case observable creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_case_observable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="n">case_observable</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Create a case observable</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case_id: Case identifier</span>
+<span class="sd">        case_observable (CaseObservable): as defined in models.py</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case observable</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseObservableException: An error occured during case observable creation</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">/artifact"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">dataType</span> <span class="o">==</span> <span class="s1">'file'</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mesg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                <span class="s2">"dataType"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">dataType</span><span class="p">,</span>
+                <span class="s2">"message"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="s2">"tlp"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">tlp</span><span class="p">,</span>
+                <span class="s2">"tags"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+                <span class="s2">"ioc"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">ioc</span><span class="p">,</span>
+                <span class="s2">"sighted"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">sighted</span>
+            <span class="p">})</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"_json"</span><span class="p">:</span> <span class="n">mesg</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">case_observable</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CaseObservableException</span><span class="p">(</span><span class="s2">"Case observable create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">case_observable</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(),</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CaseObservableException</span><span class="p">(</span><span class="s2">"Case observable create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -768,11 +1215,144 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 create_case_task<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="n">case_task</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_case_task" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param case_id: Case identifier
-:param case_task: TheHive task
-:type case_task: CaseTask defined in models.py
-:return: TheHive task
-:rtype: requests.Response</p>
+<p>Create a case task</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case_id</code></td>
+<td><code></code></td>
+<td>
+<p>Case identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>case_task</code></td>
+<td><code></code></td>
+<td>
+<p>TheHive task</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code></code></td>
+<td><code></code></td>
+<td>
+<p>return: TheHive task</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case task</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTaskException</code></td>
+<td>
+<p>An error occured during case task creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_case_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="n">case_task</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Create a case task</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case_id: Case identifier</span>
+<span class="sd">        case_task: TheHive task</span>
+<span class="sd">        :return: TheHive task</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case task</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTaskException: An error occured during case task creation</span>
+
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">/task"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">case_task</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">excludes</span><span class="o">=</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -785,6 +1365,54 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 :type case_template: CaseTemplate defined in models.py
 :return: TheHive case template
 :rtype: requests.Reponse</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_case_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_template</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    :param case_template: The case template</span>
+<span class="sd">    :type case_template: CaseTemplate defined in models.py</span>
+<span class="sd">    :return: TheHive case template</span>
+<span class="sd">    :rtype: requests.Reponse</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/template"</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">case_template</span><span class="o">.</span><span class="n">jsonify</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTemplateException</span><span class="p">(</span><span class="s2">"Case template create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -795,6 +1423,66 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 <div class="doc doc-contents">
 <p>This function is available only for TheHive 3</p>
 <p>:param custom_field: CustomField defined in models.py</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_custom_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">custom_field</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    This function is available only for TheHive 3</span>
+
+<span class="sd">    :param custom_field: CustomField defined in models.py</span>
+<span class="sd">    """</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_if_custom_field_exists</span><span class="p">(</span><span class="n">custom_field</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">CustomFieldException</span><span class="p">(</span><span class="s1">'Field with reference "</span><span class="si">{}</span><span class="s1">" already exists'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">custom_field</span><span class="o">.</span><span class="n">reference</span><span class="p">))</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"value"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">"reference"</span><span class="p">:</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+            <span class="s2">"type"</span><span class="p">:</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">"options"</span><span class="p">:</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+            <span class="s2">"mandatory"</span><span class="p">:</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">madatory</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/list/custom_fields"</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -803,11 +1491,146 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 create_task_log<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">,</span> <span class="n">case_task_log</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_task_log" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param task_id: Task identifier
-:param case_task_log: TheHive log
-:type case_task_log: CaseTaskLog defined in models.py
-:return: TheHive log
-:rtype: requests.Response</p>
+<p>Create a task log either with an attachement or just with a log message.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Task identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>case_task_log</code></td>
+<td><code>CaseTaskLocg</code></td>
+<td>
+<p>Task log as defined in models.py</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseException</code></td>
+<td>
+<p>An error occured during case creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_task_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">,</span> <span class="n">case_task_log</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Create a task log either with an attachement or just with a log message.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        task_id (str): Task identifier</span>
+<span class="sd">        case_task_log (CaseTaskLocg): Task log as defined in models.py</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseException: An error occured during case creation</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/</span><span class="si">{}</span><span class="s2">/log"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'_json'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:</span> <span class="n">case_task_log</span><span class="o">.</span><span class="n">message</span><span class="p">})}</span>
+
+    <span class="k">if</span> <span class="n">case_task_log</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'attachment'</span><span class="p">:</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">case_task_log</span><span class="o">.</span><span class="n">file</span><span class="p">),</span> <span class="nb">open</span><span class="p">(</span><span class="n">case_task_log</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">),</span> <span class="n">magic</span><span class="o">.</span><span class="n">Magic</span><span class="p">(</span><span class="n">mime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">case_task_log</span><span class="o">.</span><span class="n">file</span><span class="p">))}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task log create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span><span class="n">case_task_log</span><span class="o">.</span><span class="n">message</span><span class="p">}),</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task log create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -819,6 +1642,48 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <p>Deletes a TheHive case. Unless force is set to True the case is 'soft deleted' (status set to deleted).
 :param case_id: Case identifier
 :return: A requests response object.</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">delete_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Deletes a TheHive case. Unless force is set to True the case is 'soft deleted' (status set to deleted).</span>
+<span class="sd">    :param case_id: Case identifier</span>
+<span class="sd">    :return: A requests response object.</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">force</span><span class="p">:</span>
+        <span class="n">req</span> <span class="o">+=</span> <span class="s1">'/force'</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseException</span><span class="p">(</span><span class="s2">"Case deletion error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -829,6 +1694,36 @@ find_alerts<span class="p">(</span><span class="bp">self</span><span class="p">,
 <div class="doc doc-contents">
 <p>:return: list of Alerts
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>689
+690
+691
+692
+693
+694
+695</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">find_alerts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">        :return: list of Alerts</span>
+<span class="sd">        :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/alert/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -839,6 +1734,152 @@ find_case_templates<span class="p">(</span><span class="bp">self</span><span cla
 <div class="doc doc-contents">
 <p>:return: list of case templates
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>487
+488
+489
+490
+491
+492</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">find_case_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">        :return: list of case templates</span>
+<span class="sd">        :rtype: json</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/case/template/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.find_cases">
+<code class="highlight language-python">
+find_cases<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.api.TheHiveApi.find_cases" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Find cases using </p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sort</code></td>
+<td><code>Array</code></td>
+<td>
+<p>Case identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>str</code></td>
+<td>
+<p>A rnge describing the number of rows to be returned</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of the case.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseException</code></td>
+<td>
+<p>An error occured during case fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">find_cases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Find cases using </span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        sort (Array): Case identifier</span>
+<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of the case.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseException: An error occured during case fetch</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/case/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -849,6 +1890,34 @@ find_first<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <div class="doc doc-contents">
 <p>:return: first case of result set given by query
 :rtype: dict</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>406
+407
+408
+409
+410
+411</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">find_first</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">        :return: first case of result set given by query</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_cases</span><span class="p">(</span><span class="o">**</span><span class="n">attributes</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -859,6 +1928,36 @@ find_tasks<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <div class="doc doc-contents">
 <p>:return: list of Tasks
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>759
+760
+761
+762
+763
+764
+765</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">find_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">        :return: list of Tasks</span>
+<span class="sd">        :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/case/task/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -870,6 +1969,46 @@ get_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</
 <p>:param alert_id: Alert identifier
 :return: TheHive Alert
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_alert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">        :param alert_id: Alert identifier</span>
+<span class="sd">        :return: TheHive Alert</span>
+<span class="sd">        :rtype: json</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Alert fetch error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -878,9 +2017,118 @@ get_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</
 get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.get_case" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param case_id: Case identifier
-:return: TheHive case
-:rtype: json</p>
+<p>Get a case by id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Case identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of the case.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseException</code></td>
+<td>
+<p>An error occured during case fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Get a case by id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case_id (str): Case identifier</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of the case.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseException: An error occured during case fetch</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseException</span><span class="p">(</span><span class="s2">"Case fetch error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -892,6 +2140,88 @@ get_case_observables<span class="p">(</span><span class="bp">self</span><span cl
 <p>:param case_id: Case identifier
 :return: list of observables
 ;rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_case_observables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    :param case_id: Case identifier</span>
+<span class="sd">    :return: list of observables</span>
+<span class="sd">    ;rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/artifact/_search"</span>
+
+    <span class="c1"># Add range and sort parameters</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"range"</span><span class="p">:</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"range"</span><span class="p">,</span> <span class="s2">"all"</span><span class="p">),</span>
+        <span class="s2">"sort"</span><span class="p">:</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"sort"</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Add body</span>
+    <span class="n">parent_criteria</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="s1">'case'</span><span class="p">,</span> <span class="n">Id</span><span class="p">(</span><span class="n">case_id</span><span class="p">))</span>
+
+    <span class="c1"># Append the custom query if specified</span>
+    <span class="k">if</span> <span class="s2">"query"</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">parent_criteria</span><span class="p">,</span> <span class="n">attributes</span><span class="p">[</span><span class="s2">"query"</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="n">parent_criteria</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"query"</span><span class="p">:</span> <span class="n">criteria</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseObservableException</span><span class="p">(</span><span class="s2">"Case observables search error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -903,6 +2233,46 @@ get_case_task<span class="p">(</span><span class="bp">self</span><span class="p"
 <p>:param task_id: Task identifier
 :return: TheHive task by id
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_case_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    :param task_id: Task identifier</span>
+<span class="sd">    :return: TheHive task by id</span>
+<span class="sd">    :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task logs search error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -914,6 +2284,70 @@ get_case_template<span class="p">(</span><span class="bp">self</span><span class
 <p>:param name: Case template name
 :return: TheHive case template
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_case_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    :param name: Case template name</span>
+<span class="sd">    :return: TheHive case template</span>
+<span class="sd">    :rtype: json</span>
+
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/template/_search"</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"query"</span><span class="p">:</span> <span class="n">And</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">Eq</span><span class="p">(</span><span class="s2">"status"</span><span class="p">,</span> <span class="s2">"Ok"</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="n">json_response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">json_response</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CaseTemplateException</span><span class="p">(</span><span class="s2">"Case template fetch error: Unable to find case template </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTemplateException</span><span class="p">(</span><span class="s2">"Case template fetch error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -933,13 +2367,78 @@ get_current_user<span class="p">(</span><span class="bp">self</span><span class=
 </thead>
 <tbody>
 <tr>
-<td><code></code></td>
+<td><code>response (requests.Response)</code></td>
 <td>
-<p>Response object resulting from the API call. </p>
+<p>Response object including a JSON description of the current user</p>
 </td>
 </tr>
 </tbody>
 </table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TheHiveException</code></td>
+<td>
+<p>Generic exception if an error occurs</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_current_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Method to call the /api/current endpoint, returning the current authenticated user.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of the current user</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TheHiveException: Generic exception if an error occurs</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/user/current"</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">TheHiveException</span><span class="p">(</span><span class="s2">"Error on retrieving current user: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -951,6 +2450,46 @@ get_linked_cases<span class="p">(</span><span class="bp">self</span><span class=
 <p>:param case_id: Case identifier
 :return: TheHive case(s)
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_linked_cases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    :param case_id: Case identifier</span>
+<span class="sd">    :return: TheHive case(s)</span>
+<span class="sd">    :rtype: json</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">/links"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseException</span><span class="p">(</span><span class="s2">"Linked cases fetch error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -962,6 +2501,46 @@ get_task_log<span class="p">(</span><span class="bp">self</span><span class="p">
 <p>:param log_id: Task log identifier
 :return: TheHive task log by id
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_task_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    :param log_id: Task log identifier</span>
+<span class="sd">    :return: TheHive task log by id</span>
+<span class="sd">    :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/log/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_id</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task logs search error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -973,6 +2552,48 @@ get_task_logs<span class="p">(</span><span class="bp">self</span><span class="p"
 <p>:param task_id: Task identifier
 :return: TheHive logs
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_task_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    :param task_id: Task identifier</span>
+<span class="sd">    :return: TheHive logs</span>
+<span class="sd">    :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/</span><span class="si">{}</span><span class="s2">/log"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task logs search error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -994,11 +2615,74 @@ health<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 <tr>
 <td><code></code></td>
 <td>
-<p>Response object resulting from the API call. </p>
+<p>Response object resulting from the API call.</p>
 </td>
 </tr>
 </tbody>
 </table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TheHiveException</code></td>
+<td>
+<p>Generic exception if an error occurs</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Method to call the /api/health endpoint</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Response object resulting from the API call.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TheHiveException: Generic exception if an error occurs</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/health"</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">TheHiveException</span><span class="p">(</span><span class="s2">"Error on retrieving health status: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1010,6 +2694,46 @@ mark_alert_as_read<span class="p">(</span><span class="bp">self</span><span clas
 <p>Mark an alert as read.
 :param alert_id: The ID of the alert to mark as read.
 :return:</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">mark_alert_as_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Mark an alert as read.</span>
+<span class="sd">    :param alert_id: The ID of the alert to mark as read.</span>
+<span class="sd">    :return:</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/markAsRead"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Mark alert as read error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1021,6 +2745,46 @@ mark_alert_as_unread<span class="p">(</span><span class="bp">self</span><span cl
 <p>Mark an alert as unread.
 :param alert_id: The ID of the alert to mark as unread.
 :return:</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">mark_alert_as_unread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Mark an alert as unread.</span>
+<span class="sd">    :param alert_id: The ID of the alert to mark as unread.</span>
+<span class="sd">    :return:</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/markAsUnread"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Mark alert as unread error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1034,6 +2798,64 @@ promote_alert_to_case<span class="p">(</span><span class="bp">self</span><span c
 :param case_template: Optional Case Template name
 :return: TheHive Case
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">promote_alert_to_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">case_template</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">        This uses the TheHiveAPI to promote an alert to a case</span>
+
+<span class="sd">        :param alert_id: Alert identifier</span>
+<span class="sd">        :param case_template: Optional Case Template name</span>
+<span class="sd">        :return: TheHive Case</span>
+<span class="sd">        :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/createCase"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span>
+                             <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span>
+                             <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"caseTemplate"</span><span class="p">:</span> <span class="n">case_template</span><span class="p">}))</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">the_exception</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Couldn't promote alert to case: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">the_exception</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1046,6 +2868,60 @@ run_analyzer<span class="p">(</span><span class="bp">self</span><span class="p">
 :param artifact_id: identifier of the artifact as found with an artifact search
 :param analyzer_id: name of the analyzer used by the job
 :rtype: json</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">run_analyzer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cortex_id</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">,</span> <span class="n">analyzer_id</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    :param cortex_id: identifier of the Cortex server</span>
+<span class="sd">    :param artifact_id: identifier of the artifact as found with an artifact search</span>
+<span class="sd">    :param analyzer_id: name of the analyzer used by the job</span>
+<span class="sd">    :rtype: json</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/connector/cortex/job"</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s2">"cortexId"</span><span class="p">:</span> <span class="n">cortex_id</span><span class="p">,</span>
+            <span class="s2">"artifactId"</span><span class="p">:</span> <span class="n">artifact_id</span><span class="p">,</span>
+            <span class="s2">"analyzerId"</span><span class="p">:</span> <span class="n">analyzer_id</span>
+            <span class="p">})</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">TheHiveException</span><span class="p">(</span><span class="s2">"Analyzer run error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1059,6 +2935,72 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 :param data: The alert to update.
 :param fields: Optional parameter, an array of fields names, the ones we want to update
 :return:</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_alert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Update an alert.</span>
+<span class="sd">    :param alert_id: The ID of the alert to update.</span>
+<span class="sd">    :param data: The alert to update.</span>
+<span class="sd">    :param fields: Optional parameter, an array of fields names, the ones we want to update</span>
+<span class="sd">    :return:</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
+
+    <span class="c1"># update only the alert attributes that are not read-only</span>
+    <span class="n">update_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="s1">'severity'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">,</span> <span class="s1">'caseTemplate'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'customFields'</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">alert</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">alert</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_keys</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">'artifacts'</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">'artifacts'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alert</span><span class="o">.</span><span class="n">artifacts</span><span class="p">]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Alert update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1067,10 +3009,138 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 update_case<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[])</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.update_case" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>Update a case.
-:param case: The case to update. The case's <code>id</code> determines which case to update.
-:param fields: Optional parameter, an array of fields names, the ones we want to update
-:return:</p>
+<p>Update a case.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case</code></td>
+<td><code></code></td>
+<td>
+<p>The case to update. The case's <code>id</code> determines which case to update.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td><code></code></td>
+<td>
+<p>Optional parameter, an array of fields names, the ones we want to update</p>
+</td>
+<td><code>[]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseException</code></td>
+<td>
+<p>An error occured during case creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Update a case.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        case: The case to update. The case's `id` determines which case to update.</span>
+<span class="sd">        fields: Optional parameter, an array of fields names, the ones we want to update</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseException: An error occured during case creation</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+    <span class="c1"># Choose which attributes to send</span>
+    <span class="n">update_keys</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'severity'</span><span class="p">,</span> <span class="s1">'startDate'</span><span class="p">,</span> <span class="s1">'owner'</span><span class="p">,</span> <span class="s1">'flag'</span><span class="p">,</span> <span class="s1">'tlp'</span><span class="p">,</span> <span class="s1">'pap'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">,</span> <span class="s1">'status'</span><span class="p">,</span>
+        <span class="s1">'resolutionStatus'</span><span class="p">,</span> <span class="s1">'impactStatus'</span><span class="p">,</span> <span class="s1">'summary'</span><span class="p">,</span> <span class="s1">'endDate'</span><span class="p">,</span> <span class="s1">'metrics'</span><span class="p">,</span> <span class="s1">'customFields'</span>
+    <span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">case</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_keys</span><span class="p">)}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseException</span><span class="p">(</span><span class="s2">"Case update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1079,11 +3149,144 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 update_case_observable<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observable_id</span><span class="p">,</span> <span class="n">case_observable</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.update_case_observable" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param observable_id: Observable identifier
-:param case_observable: TheHive observable
-:type case_observable: CaseObservable defined in models.py
-:return: TheHive observable
-:rtype: json</p>
+<p>Update an existing case observable</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observable_id</code></td>
+<td><code></code></td>
+<td>
+<p>Observable identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>case_observable</code></td>
+<td><code>CaseObservable</code></td>
+<td>
+<p>TheHive observable as defined in models.py</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of the updated case observable</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseObservableException</code></td>
+<td>
+<p>An error occured during case observable creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_case_observable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observable_id</span><span class="p">,</span> <span class="n">case_observable</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Update an existing case observable</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        observable_id: Observable identifier</span>
+<span class="sd">        case_observable (CaseObservable): TheHive observable as defined in models.py</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of the updated case observable</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseObservableException: An error occured during case observable creation</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/artifact/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">observable_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+            <span class="s2">"message"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+            <span class="s2">"tlp"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">tlp</span><span class="p">,</span>
+            <span class="s2">"tags"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+            <span class="s2">"ioc"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">ioc</span><span class="p">,</span>
+            <span class="s2">"sighted"</span><span class="p">:</span> <span class="n">case_observable</span><span class="o">.</span><span class="n">sighted</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseObservableException</span><span class="p">(</span><span class="s2">"Case observable update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1095,6 +3298,60 @@ update_case_observables<span class="p">(</span><span class="bp">self</span><span
 <p>:Updates TheHive observable
 :param observable: The observable details to update
 :return:</p>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_case_observables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observable</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">"""</span>
+<span class="sd">    :Updates TheHive observable</span>
+<span class="sd">    :param observable: The observable details to update</span>
+<span class="sd">    :return:</span>
+<span class="sd">    """</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/artifact/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">observable</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+    <span class="c1"># Choose which attributes to send</span>
+    <span class="n">update_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="s1">'ioc'</span><span class="p">,</span> <span class="s1">'flag'</span><span class="p">,</span> <span class="s1">'sighted'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">,</span> <span class="s1">'message'</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">observable</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_keys</span><span class="p">)}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case observable update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1103,9 +3360,146 @@ update_case_observables<span class="p">(</span><span class="bp">self</span><span
 update_case_task<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[])</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.update_case_task" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:Updates TheHive Task
-:param case: The task to update. The task's <code>id</code> determines which Task to update.
-:return:</p>
+<p>Update a case task</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task</code></td>
+<td><code>CaseTask</code></td>
+<td>
+<p>Case task object as described in model.py</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td><code>array</code></td>
+<td>
+<p>Arry of strings representing CaseTask properties to be updated</p>
+</td>
+<td><code>[]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case task</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTaskException</code></td>
+<td>
+<p>An error occured during case task creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_case_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Update a case task</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        task (CaseTask): Case task object as described in model.py</span>
+<span class="sd">        fields (array): Arry of strings representing CaseTask properties to be updated</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case task</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTaskException: An error occured during case task creation</span>
+<span class="sd">    """</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+    <span class="c1"># Choose which attributes to send</span>
+    <span class="n">update_keys</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'status'</span><span class="p">,</span> <span class="s1">'order'</span><span class="p">,</span> <span class="s1">'user'</span><span class="p">,</span> <span class="s1">'owner'</span><span class="p">,</span> <span class="s1">'flag'</span><span class="p">,</span> <span class="s1">'endDate'</span>
+    <span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_keys</span><span class="p">)}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                              <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseTaskException</span><span class="p">(</span><span class="s2">"Case task update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
 </div>
 </div>
 </div>

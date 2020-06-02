@@ -335,6 +335,7 @@
 <code>BasicAuth</code>
 <a class="headerlink" href="#thehive4py.auth.BasicAuth" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
+<p>A custom basic authentication class for requests, that takes into account the organisation header</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="thehive4py.auth.BasicAuth.__init__">
@@ -345,7 +346,7 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 </span>
 <a class="headerlink" href="#thehive4py.auth.BasicAuth.__init__" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>A custom basic authentication class for requests, that takes into account the organisation header</p>
+<p>Constructor</p>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
@@ -389,9 +390,7 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span> 8
- 9
-10
+<pre><span></span>10
 11
 12
 13
@@ -400,14 +399,16 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 16
 17
 18
-19</pre>
+19
+20
+21</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    A custom basic authentication class for requests, that takes into account the organisation header</span>
+<span class="sd">    Constructor</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        username (str): The username to use for the authentication.</span>
@@ -433,6 +434,8 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <code>BearerAuth</code>
 <a class="headerlink" href="#thehive4py.auth.BearerAuth" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
+<p>A custom authentication class for requests, relying on API key (Bearer authorization header), 
+and taking into account the organisation header</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="thehive4py.auth.BearerAuth.__init__">
@@ -443,8 +446,7 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 </span>
 <a class="headerlink" href="#thehive4py.auth.BearerAuth.__init__" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>A custom authentication class for requests, relying on API key (Bearer authorization header), 
-and taking into account the organisation header</p>
+<p>Constructor</p>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
@@ -480,25 +482,23 @@ and taking into account the organisation header</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>32
-33
-34
-35
-36
-37
+<pre><span></span>37
 38
 39
 40
 41
-42</pre>
+42
+43
+44
+45
+46</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    A custom authentication class for requests, relying on API key (Bearer authorization header), </span>
-<span class="sd">    and taking into account the organisation header</span>
+<span class="sd">    Constructor</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        api_key (str): The API Key to use for the authentication</span>
