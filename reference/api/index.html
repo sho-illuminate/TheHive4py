@@ -883,31 +883,89 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 create_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_alert" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param alert: TheHive alert
-:type alert: Alert defined in models.py
-:return: TheHive alert
-:rtype: requests.Response</p>
+<p>Create an alert. Supports adding observables and custom fields</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert</code></td>
+<td><code>Alert</code></td>
+<td>
+<p>Alert instance as defined by the models module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array representing a list of case task logs</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert creation</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>696
-697
-698
-699
-700
-701
-702
-703
-704
-705
-706
-707
-708
-709
-710</pre>
+<pre><span></span>728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748</pre>
 </div>
 </td>
 <td class="code">
@@ -915,10 +973,16 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <pre><span></span><code><span class="k">def</span> <span class="nf">create_alert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
 
     <span class="sd">"""</span>
-<span class="sd">    :param alert: TheHive alert</span>
-<span class="sd">    :type alert: Alert defined in models.py</span>
-<span class="sd">    :return: TheHive alert</span>
-<span class="sd">    :rtype: requests.Response</span>
+<span class="sd">    Create an alert. Supports adding observables and custom fields</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert (Alert): Alert instance as defined by the models module</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array representing a list of case task logs</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert creation</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert"</span>
@@ -1133,12 +1197,7 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>290
-291
-292
-293
-294
-295
+<pre><span></span>295
 296
 297
 298
@@ -1169,7 +1228,12 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 323
 324
 325
-326</pre>
+326
+327
+328
+329
+330
+331</pre>
 </div>
 </td>
 <td class="code">
@@ -1303,10 +1367,7 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>202
-203
-204
-205
+<pre><span></span>205
 206
 207
 208
@@ -1327,7 +1388,10 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 223
 224
 225
-226</pre>
+226
+227
+228
+229</pre>
 </div>
 </td>
 <td class="code">
@@ -1387,7 +1451,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <td><code>case_template</code></td>
 <td><code>CaseTemplate</code></td>
 <td>
-<p>Case template's name</p>
+<p>Case template instance as defined in models module</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1422,7 +1486,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <tr>
 <td><code>CaseTemplateException</code></td>
 <td>
-<p>An error occured during case template fetch</p>
+<p>An error occured during case template creation</p>
 </td>
 </tr>
 </tbody>
@@ -1433,12 +1497,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>595
-596
-597
-598
-599
-600
+<pre><span></span>600
 601
 602
 603
@@ -1458,9 +1517,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 617
 618
 619
-620
-621
-622</pre>
+620</pre>
 </div>
 </td>
 <td class="code">
@@ -1470,20 +1527,13 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <span class="sd">    Create a case template</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case_template (CaseTemplate): Case template's name</span>
+<span class="sd">        case_template (CaseTemplate): Case template instance as defined in models module</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON representation of the case template</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        CaseTemplateException: An error occured during case template fetch</span>
-<span class="sd">    """</span>
-
-    <span class="sd">"""</span>
-<span class="sd">    :param case_template: The case template</span>
-<span class="sd">    :type case_template: CaseTemplate defined in models.py</span>
-<span class="sd">    :return: TheHive case template</span>
-<span class="sd">    :rtype: requests.Reponse</span>
+<span class="sd">        CaseTemplateException: An error occured during case template creation</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/template"</span>
@@ -1507,15 +1557,81 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 create_custom_field<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">custom_field</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.create_custom_field" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
+<p>Create a custom field</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>custom_field</code></td>
+<td><code>CustomField</code></td>
+<td>
+<p>Custom field instance as defined in models module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the case template</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CustomFieldException</code></td>
+<td>
+<p>Custom field already exists</p>
+</td>
+</tr>
+<tr>
+<td><code>CustomFieldException</code></td>
+<td>
+<p>An error occured during custom field creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>This function is available only for TheHive 3</p>
-<p>:param custom_field: CustomField defined in models.py</p>
+</div>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>633
+<pre><span></span>631
+632
+633
 634
 635
 636
@@ -1536,16 +1652,39 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 651
 652
 653
-654</pre>
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">create_custom_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">custom_field</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    This function is available only for TheHive 3</span>
+<span class="sd">    Create a custom field</span>
 
-<span class="sd">    :param custom_field: CustomField defined in models.py</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        custom_field (CustomField): Custom field instance as defined in models module</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the case template</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CustomFieldException: Custom field already exists</span>
+<span class="sd">        CustomFieldException: An error occured during custom field creation</span>
+
+<span class="sd">    !!! Warning</span>
+<span class="sd">        This function is available only for TheHive 3</span>
 <span class="sd">    """</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_if_custom_field_exists</span><span class="p">(</span><span class="n">custom_field</span><span class="p">):</span>
@@ -1562,7 +1701,10 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/list/custom_fields"</span>
-    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CustomFieldException</span><span class="p">(</span><span class="s2">"Custom field create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
 </td>
@@ -1647,12 +1789,7 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>259
-260
-261
-262
-263
-264
+<pre><span></span>264
 265
 266
 267
@@ -1676,7 +1813,12 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 285
 286
 287
-288</pre>
+288
+289
+290
+291
+292
+293</pre>
 </div>
 </td>
 <td class="code">
@@ -1795,12 +1937,7 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>397
-398
-399
-400
-401
-402
+<pre><span></span>402
 403
 404
 405
@@ -1815,7 +1952,12 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 414
 415
 416
-417</pre>
+417
+418
+419
+420
+421
+422</pre>
 </div>
 </td>
 <td class="code">
@@ -1855,29 +1997,122 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 find_alerts<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.find_alerts" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:return: list of Alerts
-:rtype: json</p>
+<p>Find alerts using sort, pagination and a query</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td><code>dict</code></td>
+<td>
+<p>A query object, defined in JSON format or using utiliy methods from thehive4py.query module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td><code>Array</code></td>
+<td>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>str</code></td>
+<td>
+<p>A range describing the number of rows to be returned</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array of alerts.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert search</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>777
-778
-779
-780
-781
-782
-783</pre>
+<pre><span></span>845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">find_alerts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">        :return: list of Alerts</span>
-<span class="sd">        :rtype: json</span>
+<span class="sd">    Find alerts using sort, pagination and a query</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array of alerts.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert search</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/alert/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
@@ -1928,7 +2163,7 @@ and <code>+</code> for ascending order</p>
 <td><code>range</code></td>
 <td><code>str</code></td>
 <td>
-<p>A rnge describing the number of rows to be returned</p>
+<p>A range describing the number of rows to be returned</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1974,12 +2209,7 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>546
-547
-548
-549
-550
-551
+<pre><span></span>551
 552
 553
 554
@@ -1990,7 +2220,12 @@ and <code>+</code> for ascending order</p>
 559
 560
 561
-562</pre>
+562
+563
+564
+565
+566
+567</pre>
 </div>
 </td>
 <td class="code">
@@ -2003,7 +2238,7 @@ and <code>+</code> for ascending order</p>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
 <span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
 <span class="sd">            and `+` for ascending order</span>
-<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON array of case templates</span>
@@ -2059,7 +2294,7 @@ and <code>+</code> for ascending order</p>
 <td><code>range</code></td>
 <td><code>str</code></td>
 <td>
-<p>A rnge describing the number of rows to be returned</p>
+<p>A range describing the number of rows to be returned</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2105,12 +2340,7 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>379
-380
-381
-382
-383
-384
+<pre><span></span>384
 385
 386
 387
@@ -2121,7 +2351,12 @@ and <code>+</code> for ascending order</p>
 392
 393
 394
-395</pre>
+395
+396
+397
+398
+399
+400</pre>
 </div>
 </td>
 <td class="code">
@@ -2134,7 +2369,7 @@ and <code>+</code> for ascending order</p>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
 <span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
 <span class="sd">            and `+` for ascending order</span>
-<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON array of cases.</span>
@@ -2190,7 +2425,7 @@ and <code>+</code> for ascending order</p>
 <td><code>range</code></td>
 <td><code>str</code></td>
 <td>
-<p>A rnge describing the number of rows to be returned</p>
+<p>A range describing the number of rows to be returned</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2236,12 +2471,7 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>419
-420
-421
-422
-423
-424
+<pre><span></span>424
 425
 426
 427
@@ -2252,7 +2482,12 @@ and <code>+</code> for ascending order</p>
 432
 433
 434
-435</pre>
+435
+436
+437
+438
+439
+440</pre>
 </div>
 </td>
 <td class="code">
@@ -2265,7 +2500,7 @@ and <code>+</code> for ascending order</p>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
 <span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
 <span class="sd">            and `+` for ascending order</span>
-<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of the case.</span>
@@ -2288,29 +2523,122 @@ and <code>+</code> for ascending order</p>
 find_tasks<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.find_tasks" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:return: list of Tasks
-:rtype: json</p>
+<p>Find case tasks using sort, pagination and a query</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td><code>dict</code></td>
+<td>
+<p>A query object, defined in JSON format or using utiliy methods from thehive4py.query module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td><code>Array</code></td>
+<td>
+<p>List of fields to sort the result with. Prefix the field name with <code>-</code> for descending order
+and <code>+</code> for ascending order</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>str</code></td>
+<td>
+<p>A range describing the number of rows to be returned</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array of case tasks.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during case task search</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>847
-848
-849
-850
-851
-852
-853</pre>
+<pre><span></span>948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">find_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">        :return: list of Tasks</span>
-<span class="sd">        :rtype: json</span>
+<span class="sd">    Find case tasks using sort, pagination and a query</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
+<span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
+<span class="sd">            and `+` for ascending order</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array of case tasks.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during case task search</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__find_rows</span><span class="p">(</span><span class="s2">"/api/case/task/_search"</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">)</span>
@@ -2328,36 +2656,103 @@ find_tasks<span class="p">(</span><span class="bp">self</span><span class="p">,<
 get_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.get_alert" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param alert_id: Alert identifier
-:return: TheHive Alert
-:rtype: json</p>
+<p>Get an alert by its id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the alert</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the alert</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert update</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>764
-765
-766
-767
-768
-769
-770
-771
-772
-773
-774
-775</pre>
+<pre><span></span>825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_alert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">        :param alert_id: Alert identifier</span>
-<span class="sd">        :return: TheHive Alert</span>
-<span class="sd">        :rtype: json</span>
+<span class="sd">    Get an alert by its id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert_id (str): Id of the alert</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the alert</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert update</span>
 <span class="sd">    """</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
 
@@ -2441,12 +2836,7 @@ get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>358
-359
-360
-361
-362
-363
+<pre><span></span>363
 364
 365
 366
@@ -2460,7 +2850,12 @@ get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 374
 375
 376
-377</pre>
+377
+378
+379
+380
+381
+382</pre>
 </div>
 </td>
 <td class="code">
@@ -2540,7 +2935,7 @@ and <code>+</code> for ascending order</p>
 <td><code>range</code></td>
 <td><code>str</code></td>
 <td>
-<p>A rnge describing the number of rows to be returned</p>
+<p>A range describing the number of rows to be returned</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2586,12 +2981,7 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>437
-438
-439
-440
-441
-442
+<pre><span></span>442
 443
 444
 445
@@ -2629,7 +3019,12 @@ and <code>+</code> for ascending order</p>
 477
 478
 479
-480</pre>
+480
+481
+482
+483
+484
+485</pre>
 </div>
 </td>
 <td class="code">
@@ -2644,7 +3039,7 @@ and <code>+</code> for ascending order</p>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
 <span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
 <span class="sd">            and `+` for ascending order</span>
-<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON array of case observable.</span>
@@ -2692,36 +3087,103 @@ and <code>+</code> for ascending order</p>
 get_case_task<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.get_case_task" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param task_id: Task identifier
-:return: TheHive task by id
-:rtype: json</p>
+<p>Get a case task by its id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Case task identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the case task</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTaskException</code></td>
+<td>
+<p>An error occured during case task fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>656
-657
-658
-659
-660
-661
-662
-663
-664
-665
-666
-667</pre>
+<pre><span></span>668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_case_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    :param task_id: Task identifier</span>
-<span class="sd">    :return: TheHive task by id</span>
-<span class="sd">    :rtype: json</span>
+<span class="sd">    Get a case task by its id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        task_id (str): Case task identifier</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the case task</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTaskException: An error occured during case task fetch</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
@@ -2784,7 +3246,7 @@ and <code>+</code> for ascending order</p>
 <td><code>range</code></td>
 <td><code>str</code></td>
 <td>
-<p>A rnge describing the number of rows to be returned</p>
+<p>A range describing the number of rows to be returned</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -2830,12 +3292,7 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>482
-483
-484
-485
-486
-487
+<pre><span></span>487
 488
 489
 490
@@ -2872,7 +3329,12 @@ and <code>+</code> for ascending order</p>
 521
 522
 523
-524</pre>
+524
+525
+526
+527
+528
+529</pre>
 </div>
 </td>
 <td class="code">
@@ -2886,7 +3348,7 @@ and <code>+</code> for ascending order</p>
 <span class="sd">        query (dict): A query object, defined in JSON format or using utiliy methods from thehive4py.query module</span>
 <span class="sd">        sort (Array): List of fields to sort the result with. Prefix the field name with `-` for descending order</span>
 <span class="sd">            and `+` for ascending order</span>
-<span class="sd">        range (str): A rnge describing the number of rows to be returned</span>
+<span class="sd">        range (str): A range describing the number of rows to be returned</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON array of case task.</span>
@@ -2996,12 +3458,7 @@ get_case_template<span class="p">(</span><span class="bp">self</span><span class
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>564
-565
-566
-567
-568
-569
+<pre><span></span>569
 570
 571
 572
@@ -3025,7 +3482,12 @@ get_case_template<span class="p">(</span><span class="bp">self</span><span class
 590
 591
 592
-593</pre>
+593
+594
+595
+596
+597
+598</pre>
 </div>
 </td>
 <td class="code">
@@ -3227,12 +3689,7 @@ get_linked_cases<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>526
-527
-528
-529
-530
-531
+<pre><span></span>531
 532
 533
 534
@@ -3245,7 +3702,12 @@ get_linked_cases<span class="p">(</span><span class="bp">self</span><span class=
 541
 542
 543
-544</pre>
+544
+545
+546
+547
+548
+549</pre>
 </div>
 </td>
 <td class="code">
@@ -3283,36 +3745,103 @@ get_linked_cases<span class="p">(</span><span class="bp">self</span><span class=
 get_task_log<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.get_task_log" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param log_id: Task log identifier
-:return: TheHive task log by id
-:rtype: json</p>
+<p>Get a case task log by its id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>log_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Case task log identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the case task log</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTaskException</code></td>
+<td>
+<p>An error occured during case task log fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679
-680</pre>
+<pre><span></span>688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_task_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_id</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    :param log_id: Task log identifier</span>
-<span class="sd">    :return: TheHive task log by id</span>
-<span class="sd">    :rtype: json</span>
+<span class="sd">    Get a case task log by its id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        log_id (str): Case task log identifier</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the case task log</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTaskException: An error occured during case task log fetch</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/log/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_id</span><span class="p">)</span>
@@ -3334,38 +3863,103 @@ get_task_log<span class="p">(</span><span class="bp">self</span><span class="p">
 get_task_logs<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.get_task_logs" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param task_id: Task identifier
-:return: TheHive logs
-:rtype: json</p>
+<p>Get logs of a case task by its id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Case task identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON array representing a list of case task logs</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseTaskException</code></td>
+<td>
+<p>An error occured during case task log fetch</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>682
-683
-684
-685
-686
-687
-688
-689
-690
-691
-692
-693
-694</pre>
+<pre><span></span>708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_task_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
-
     <span class="sd">"""</span>
-<span class="sd">    :param task_id: Task identifier</span>
-<span class="sd">    :return: TheHive logs</span>
-<span class="sd">    :rtype: json</span>
+<span class="sd">    Get logs of a case task by its id</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        task_id (str): Case task identifier</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON array representing a list of case task logs</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseTaskException: An error occured during case task log fetch</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/task/</span><span class="si">{}</span><span class="s2">/log"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
@@ -3476,42 +4070,109 @@ health<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 mark_alert_as_read<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.mark_alert_as_read" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>Mark an alert as read.
-:param alert_id: The ID of the alert to mark as read.
-:return:</p>
+<p>Mark an alert as read. This sets the status of the alert to <code>Ignored</code> if it's not yet promoted to a case.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the alert</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the alert</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert update</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>712
-713
-714
-715
-716
-717
-718
-719
-720
-721
-722
-723</pre>
+<pre><span></span>750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">mark_alert_as_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    Mark an alert as read.</span>
-<span class="sd">    :param alert_id: The ID of the alert to mark as read.</span>
-<span class="sd">    :return:</span>
+<span class="sd">    Mark an alert as read. This sets the status of the alert to `Ignored` if it's not yet promoted to a case.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert_id (str): Id of the alert</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the alert</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert update</span>
 <span class="sd">    """</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/markAsRead"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Mark alert as read error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
@@ -3527,42 +4188,109 @@ mark_alert_as_read<span class="p">(</span><span class="bp">self</span><span clas
 mark_alert_as_unread<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.mark_alert_as_unread" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>Mark an alert as unread.
-:param alert_id: The ID of the alert to mark as unread.
-:return:</p>
+<p>Mark an alert as unread. This sets the status of the alert to <code>New</code> if it's not yet promoted to a case.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the alert</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the alert</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert update</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>725
-726
-727
-728
-729
-730
-731
-732
-733
-734
-735
-736</pre>
+<pre><span></span>770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">mark_alert_as_unread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    Mark an alert as unread.</span>
-<span class="sd">    :param alert_id: The ID of the alert to mark as unread.</span>
-<span class="sd">    :return:</span>
+<span class="sd">    Mark an alert as unread. This sets the status of the alert to `New` if it's not yet promoted to a case.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert_id (str): Id of the alert</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the alert</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert update</span>
 <span class="sd">    """</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/markAsUnread"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Mark alert as unread error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
@@ -3578,50 +4306,119 @@ mark_alert_as_unread<span class="p">(</span><span class="bp">self</span><span cl
 promote_alert_to_case<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">case_template</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.promote_alert_to_case" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>This uses the TheHiveAPI to promote an alert to a case</p>
-<p>:param alert_id: Alert identifier
-:param case_template: Optional Case Template name
-:return: TheHive Case
-:rtype: json</p>
+<p>Create a new case from an alert, with an optional case template</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the alert</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>case_template</code></td>
+<td><code>str</code></td>
+<td>
+<p>Case template name to apply when creating the cas</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the alert</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert promotion</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>805
-806
-807
-808
-809
-810
-811
-812
-813
-814
-815
-816
-817
-818
-819
-820
-821
-822
-823
-824
-825</pre>
+<pre><span></span>894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">promote_alert_to_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">case_template</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">        This uses the TheHiveAPI to promote an alert to a case</span>
+<span class="sd">    Create a new case from an alert, with an optional case template</span>
 
-<span class="sd">        :param alert_id: Alert identifier</span>
-<span class="sd">        :param case_template: Optional Case Template name</span>
-<span class="sd">        :return: TheHive Case</span>
-<span class="sd">        :rtype: json</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert_id (str): Id of the alert</span>
+<span class="sd">        case_template (str): Case template name to apply when creating the cas</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the alert</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert promotion</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/createCase"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
@@ -3649,46 +4446,128 @@ promote_alert_to_case<span class="p">(</span><span class="bp">self</span><span c
 run_analyzer<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cortex_id</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">,</span> <span class="n">analyzer_id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.run_analyzer" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:param cortex_id: identifier of the Cortex server
-:param artifact_id: identifier of the artifact as found with an artifact search
-:param analyzer_id: name of the analyzer used by the job
-:rtype: json</p>
+<p>Create a new case from an alert, with an optional case template</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cortex_id</code></td>
+<td><code></code></td>
+<td>
+<p>identifier of the Cortex server</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>artifact_id</code></td>
+<td><code></code></td>
+<td>
+<p>identifier of the artifact as found with an artifact search</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>analyzer_id</code></td>
+<td><code></code></td>
+<td>
+<p>name of the analyzer used by the job</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the analysis job</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TheHiveException</code></td>
+<td>
+<p>An error occured during job creation</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>827
-828
-829
-830
-831
-832
-833
-834
-835
-836
-837
-838
-839
-840
-841
-842
-843
-844
-845</pre>
+<pre><span></span>921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">run_analyzer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cortex_id</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">,</span> <span class="n">analyzer_id</span><span class="p">):</span>
-
     <span class="sd">"""</span>
-<span class="sd">    :param cortex_id: identifier of the Cortex server</span>
-<span class="sd">    :param artifact_id: identifier of the artifact as found with an artifact search</span>
-<span class="sd">    :param analyzer_id: name of the analyzer used by the job</span>
-<span class="sd">    :rtype: json</span>
+<span class="sd">    Create a new case from an alert, with an optional case template</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        cortex_id: identifier of the Cortex server</span>
+<span class="sd">        artifact_id: identifier of the artifact as found with an artifact search</span>
+<span class="sd">        analyzer_id: name of the analyzer used by the job</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the analysis job</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TheHiveException: An error occured during job creation</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/connector/cortex/job"</span>
@@ -3715,53 +4594,139 @@ run_analyzer<span class="p">(</span><span class="bp">self</span><span class="p">
 update_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[])</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.update_alert" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>Update an alert.
-:param alert_id: The ID of the alert to update.
-:param data: The alert to update.
-:param fields: Optional parameter, an array of fields names, the ones we want to update
-:return:</p>
+<p>Update an alert completely or using specified fields</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the alert</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>alert</code></td>
+<td><code>Alert</code></td>
+<td>
+<p>Alert instance as described in the models module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td><code>Array</code></td>
+<td>
+<p>Optional parameter, an array of field names, the ones we want to update</p>
+<p>Updatable fields are: [<code>tlp</code>, <code>severity</code>, <code>tags</code>, <code>caseTemplate</code>, <code>title</code>, <code>description</code>, <code>customFields</code>]</p>
+</td>
+<td><code>[]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON representation of the alert</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertException</code></td>
+<td>
+<p>An error occured during alert update</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>738
-739
-740
-741
-742
-743
-744
-745
-746
-747
-748
-749
-750
-751
-752
-753
-754
-755
-756
-757
-758
-759
-760
-761
-762</pre>
+<pre><span></span>790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">update_alert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">"""</span>
-<span class="sd">    Update an alert.</span>
-<span class="sd">    :param alert_id: The ID of the alert to update.</span>
-<span class="sd">    :param data: The alert to update.</span>
-<span class="sd">    :param fields: Optional parameter, an array of fields names, the ones we want to update</span>
-<span class="sd">    :return:</span>
+<span class="sd">    Update an alert completely or using specified fields</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert_id (str): Id of the alert</span>
+<span class="sd">        alert (Alert): Alert instance as described in the models module</span>
+<span class="sd">        fields (Array): Optional parameter, an array of field names, the ones we want to update</span>
+
+<span class="sd">            Updatable fields are: [`tlp`, `severity`, `tags`, `caseTemplate`, `title`, `description`, `customFields`]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON representation of the alert</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertException: An error occured during alert update</span>
 <span class="sd">    """</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
 
@@ -3778,7 +4743,7 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Alert update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
@@ -3808,7 +4773,7 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tbody>
 <tr>
 <td><code>case</code></td>
-<td><code></code></td>
+<td><code>Case</code></td>
 <td>
 <p>The case to update. The case's <code>id</code> determines which case to update.</p>
 </td>
@@ -3816,9 +4781,11 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 </tr>
 <tr>
 <td><code>fields</code></td>
-<td><code></code></td>
+<td><code>Array</code></td>
 <td>
 <p>Optional parameter, an array of fields names, the ones we want to update</p>
+<p>Updatable fields are: [<code>title</code>, <code>description</code>, <code>severity</code>, <code>startDate</code>, <code>owner</code>, <code>flag</code>, <code>tlp</code>, <code>pap</code>, <code>tags</code>, <code>status</code>,
+<code>resolutionStatus</code>, <code>impactStatus</code>, <code>summary</code>, <code>endDate</code>, <code>metrics</code>, <code>customFields</code>]</p>
 </td>
 <td><code>[]</code></td>
 </tr>
@@ -3889,7 +4856,10 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 197
 198
 199
-200</pre>
+200
+201
+202
+203</pre>
 </div>
 </td>
 <td class="code">
@@ -3899,8 +4869,11 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <span class="sd">    Update a case.</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case: The case to update. The case's `id` determines which case to update.</span>
-<span class="sd">        fields: Optional parameter, an array of fields names, the ones we want to update</span>
+<span class="sd">        case (Case): The case to update. The case's `id` determines which case to update.</span>
+<span class="sd">        fields (Array): Optional parameter, an array of fields names, the ones we want to update</span>
+
+<span class="sd">            Updatable fields are: [`title`, `description`, `severity`, `startDate`, `owner`, `flag`, `tlp`, `pap`, `tags`, `status`,</span>
+<span class="sd">            `resolutionStatus`, `impactStatus`, `summary`, `endDate`, `metrics`, `customFields`]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of a case</span>
@@ -3918,7 +4891,7 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">case</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_keys</span><span class="p">)}</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">CaseException</span><span class="p">(</span><span class="s2">"Case update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
@@ -4004,12 +4977,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>328
-329
-330
-331
-332
-333
+<pre><span></span>333
 334
 335
 336
@@ -4032,7 +5000,12 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 353
 354
 355
-356</pre>
+356
+357
+358
+359
+360
+361</pre>
 </div>
 </td>
 <td class="code">
@@ -4080,43 +5053,125 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 update_case_observables<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observable</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[])</span> </code>
 <a class="headerlink" href="#thehive4py.api.TheHiveApi.update_case_observables" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>:Updates TheHive observable
-:param observable: The observable details to update
-:return:</p>
+<p>Update a case observable</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observable</code></td>
+<td><code>CaseObservable</code></td>
+<td>
+<p>The case observable to update. The observable's <code>id</code> determines which case to update.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td><code>Array</code></td>
+<td>
+<p>Optional parameter, an array of fields names, the ones we want to update.</p>
+<p>Updatable fields are: [<code>tlp</code>, <code>ioc</code>, <code>flag</code>, <code>sighted</code>, <code>tags</code>, <code>message</code>]</p>
+</td>
+<td><code>[]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of a case observable</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaseObservableException</code></td>
+<td>
+<p>An error occured during observable update</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>thehive4py/api.py</code></summary>
 <table class="highlighttable">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>785
-786
-787
-788
-789
-790
-791
-792
-793
-794
-795
-796
-797
-798
-799
-800
-801
-802
-803</pre>
+<pre><span></span>864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892</pre>
 </div>
 </td>
 <td class="code">
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">update_case_observables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observable</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">"""</span>
-<span class="sd">    :Updates TheHive observable</span>
-<span class="sd">    :param observable: The observable details to update</span>
-<span class="sd">    :return:</span>
+<span class="sd">    Update a case observable</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        observable (CaseObservable): The case observable to update. The observable's `id` determines which case to update.</span>
+<span class="sd">        fields (Array): Optional parameter, an array of fields names, the ones we want to update.</span>
+
+<span class="sd">            Updatable fields are: [`tlp`, `ioc`, `flag`, `sighted`, `tags`, `message`]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of a case observable</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        CaseObservableException: An error occured during observable update</span>
 <span class="sd">    """</span>
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/artifact/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">observable</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 
@@ -4170,6 +5225,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <td><code>array</code></td>
 <td>
 <p>Arry of strings representing CaseTask properties to be updated</p>
+<p>Updatable fields are: [<code>title</code>, <code>description</code>, <code>status</code>, <code>order</code>, <code>user</code>, <code>owner</code>, <code>flag</code>, <code>endDate</code>]</p>
 </td>
 <td><code>[]</code></td>
 </tr>
@@ -4215,10 +5271,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>228
-229
-230
-231
+<pre><span></span>231
 232
 233
 234
@@ -4244,7 +5297,12 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 254
 255
 256
-257</pre>
+257
+258
+259
+260
+261
+262</pre>
 </div>
 </td>
 <td class="code">
@@ -4256,6 +5314,8 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <span class="sd">    Arguments:</span>
 <span class="sd">        task (CaseTask): Case task object as described in model.py</span>
 <span class="sd">        fields (array): Arry of strings representing CaseTask properties to be updated</span>
+
+<span class="sd">            Updatable fields are: [`title`, `description`, `status`, `order`, `user`, `owner`, `flag`, `endDate`]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of a case task</span>

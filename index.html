@@ -354,36 +354,50 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/api#thehive4py.api.TheHiveApi.find_alerts">Search for alerts</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_alert">Create alert</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.get_alert">Get alert</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.update_alert">Update alert</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.mark_alert_as_read">Mark alert as Read</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.mark_alert_as_unread">Mark alert as Read</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.promote_alert_to_case">Promote alert to case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete alert</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create case from many alert</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Merge alert into an existing case</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on an alert</li>
 </ul>
 </div>
 <input id="__tabbed_1_3" name="__tabbed_1" type="radio"/><label for="__tabbed_1_3">Cases</label><div class="tabbed-content">
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.find_cases">Search for cases</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.find_first">Get first case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_case">Create case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.update_case">Update case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.delete_case">Delete case</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.get_linked_case">Get related cases</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on a case</li>
 </ul>
 </div>
 <input id="__tabbed_1_4" name="__tabbed_1" type="radio"/><label for="__tabbed_1_4">Tasks</label><div class="tabbed-content">
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Search for tasks</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create and update tasks</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete tasks</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create task log</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on task</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.find_tasks">Search for tasks</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_case_task">Create tasks</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4pi.api.TheHiveApi.get_case_task">Get task by id</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Update tasks</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete tasks</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_task_log">Create task logs</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4pi.api.TheHiveApi.get_task_log">Get log by id</a></li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4pi.api.TheHiveApi.get_task_logs">List task logs by task id</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on a task</li>
 </ul>
 </div>
 <input id="__tabbed_1_5" name="__tabbed_1" type="radio"/><label for="__tabbed_1_5">Observables</label><div class="tabbed-content">
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Search for observables</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create observable</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Update observable</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete observable</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run analyzer on observable</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on observable</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.get_case_observables">Search for observables of a case</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Search for observables</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_case_observable">Create observables</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.create_caseupdate">Update observables</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Delete observables</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.TheHiveApi.run_analyzer">Run analyzer on observable</a></li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Run responder on an observable</li>
 </ul>
 </div>
 <input id="__tabbed_1_6" name="__tabbed_1" type="radio"/><label for="__tabbed_1_6">Administration</label><div class="tabbed-content">
@@ -391,7 +405,7 @@
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.find_case_templates">Search for Case templates</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.get_case_template">Get Case template by name</a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.create_case_template">Create Case templates</a></li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Create custom fields</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <a href="reference/api#thehive4py.api.create_custom_field">Create custom fields</a></li>
 </ul>
 </div>
 </input></input></div>
@@ -413,7 +427,7 @@
 <h2 id="community-discussions">Community Discussions<a class="headerlink" href="#community-discussions" title="Permanent link">#</a></h2>
 <p>We have set up a Google forum at <a href="https://groups.google.com/a/thehive-project.org/d/forum/users">https://groups.google.com/a/thehive-project.org/d/forum/users</a>. To request access, you need a Google account. You may create one <a href="https://accounts.google.com/SignUp?hl=en">using a Gmail address</a> or <a href="https://accounts.google.com/SignUpWithoutGmail?hl=en">without one</a>.</p>
 <h2 id="website">Website<a class="headerlink" href="#website" title="Permanent link">#</a></h2>
-<p><a href="https://thehive-project.org/">https://thehive-project.org/</a></p>
+<p><a href="https://thehive-project.org">https://thehive-project.org/</a></p>
 </article>
 </div>
 </div>
