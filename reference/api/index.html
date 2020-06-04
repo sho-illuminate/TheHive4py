@@ -113,8 +113,8 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../.." title="Home">
-      Home
+<a class="md-nav__link" href="../.." title="TheHive4py">
+      TheHive4py
     </a>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -139,8 +139,8 @@
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../auth/" title="Authentication">
-      Authentication
+<a class="md-nav__link" href="../auth/" title="Auth">
+      Auth
     </a>
 </li>
 <li class="md-nav__item md-nav__item--active">
@@ -350,8 +350,8 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../query/" title="Query DSL">
-      Query DSL
+<a class="md-nav__link" href="../query/" title="Query">
+      Query
     </a>
 </li>
 <li class="md-nav__item">
@@ -407,13 +407,13 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../changelog/" title="Change log">
-      Change log
+<a class="md-nav__link" href="../../changelog/" title="Change Log">
+      Change Log
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../code_of_conduct/" title="Code of conduct">
-      Code of conduct
+<a class="md-nav__link" href="../../code_of_conduct/" title="Contributor Covenant Code of Conduct">
+      Contributor Covenant Code of Conduct
     </a>
 </li>
 </ul>
@@ -899,7 +899,7 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <td><code>alert</code></td>
 <td><code>Alert</code></td>
 <td>
-<p>Alert instance as defined by the models module</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.Alert">Alert</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -945,7 +945,8 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>728
+<pre><span></span>727
+728
 729
 730
 731
@@ -964,8 +965,7 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 744
 745
 746
-747
-748</pre>
+747</pre>
 </div>
 </td>
 <td class="code">
@@ -976,7 +976,7 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <span class="sd">    Create an alert. Supports adding observables and custom fields</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        alert (Alert): Alert instance as defined by the models module</span>
+<span class="sd">        alert (Alert): Instance of [Alert][thehive4py.models.Alert]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON array representing a list of case task logs</span>
@@ -1021,7 +1021,7 @@ create_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <td><code>case</code></td>
 <td><code>Case</code></td>
 <td>
-<p>The case object as defined in models.my</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.Case">Case</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1098,7 +1098,7 @@ create_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <span class="sd">    Create a case</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case (Case): The case object as defined in models.my</span>
+<span class="sd">        case (Case): Instance of [Case][thehive4py.models.Case]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of a case</span>
@@ -1141,7 +1141,7 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tbody>
 <tr>
 <td><code>case_id</code></td>
-<td><code></code></td>
+<td><code>str</code></td>
 <td>
 <p>Case identifier</p>
 </td>
@@ -1151,7 +1151,7 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <td><code>case_observable</code></td>
 <td><code>CaseObservable</code></td>
 <td>
-<p>as defined in models.py</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseObservable">CaseObservable</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1197,7 +1197,8 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>295
+<pre><span></span>294
+295
 296
 297
 298
@@ -1232,8 +1233,7 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 327
 328
 329
-330
-331</pre>
+330</pre>
 </div>
 </td>
 <td class="code">
@@ -1244,8 +1244,8 @@ create_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <span class="sd">    Create a case observable</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case_id: Case identifier</span>
-<span class="sd">        case_observable (CaseObservable): as defined in models.py</span>
+<span class="sd">        case_id (str): Case identifier</span>
+<span class="sd">        case_observable (CaseObservable): Instance of [CaseObservable][thehive4py.models.CaseObservable]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of a case observable</span>
@@ -1313,15 +1313,7 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <td><code>case_task</code></td>
 <td><code></code></td>
 <td>
-<p>TheHive task</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code></code></td>
-<td><code></code></td>
-<td>
-<p>return: TheHive task</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseTask">CaseTask</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1390,8 +1382,7 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 225
 226
 227
-228
-229</pre>
+228</pre>
 </div>
 </td>
 <td class="code">
@@ -1403,8 +1394,7 @@ create_case_task<span class="p">(</span><span class="bp">self</span><span class=
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        case_id: Case identifier</span>
-<span class="sd">        case_task: TheHive task</span>
-<span class="sd">        :return: TheHive task</span>
+<span class="sd">        case_task: Instance of [CaseTask][thehive4py.models.CaseTask]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of a case task</span>
@@ -1451,7 +1441,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <td><code>case_template</code></td>
 <td><code>CaseTemplate</code></td>
 <td>
-<p>Case template instance as defined in models module</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseTemplate">CaseTemplate</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1497,7 +1487,8 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>600
+<pre><span></span>599
+600
 601
 602
 603
@@ -1516,8 +1507,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 616
 617
 618
-619
-620</pre>
+619</pre>
 </div>
 </td>
 <td class="code">
@@ -1527,7 +1517,7 @@ create_case_template<span class="p">(</span><span class="bp">self</span><span cl
 <span class="sd">    Create a case template</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case_template (CaseTemplate): Case template instance as defined in models module</span>
+<span class="sd">        case_template (CaseTemplate): Instance of [CaseTemplate][thehive4py.models.CaseTemplate]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON representation of the case template</span>
@@ -1573,7 +1563,7 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 <td><code>custom_field</code></td>
 <td><code>CustomField</code></td>
 <td>
-<p>Custom field instance as defined in models module</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CustomField">CustomField</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1629,7 +1619,8 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>631
+<pre><span></span>630
+631
 632
 633
 634
@@ -1663,8 +1654,7 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 662
 663
 664
-665
-666</pre>
+665</pre>
 </div>
 </td>
 <td class="code">
@@ -1674,7 +1664,7 @@ create_custom_field<span class="p">(</span><span class="bp">self</span><span cla
 <span class="sd">    Create a custom field</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        custom_field (CustomField): Custom field instance as defined in models module</span>
+<span class="sd">        custom_field (CustomField): Instance of [CustomField][thehive4py.models.CustomField]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON representation of the case template</span>
@@ -1743,7 +1733,7 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 <td><code>case_task_log</code></td>
 <td><code>CaseTaskLocg</code></td>
 <td>
-<p>Task log as defined in models.py</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseTaskLog">CaseTaskLog</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -1789,7 +1779,8 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>264
+<pre><span></span>263
+264
 265
 266
 267
@@ -1817,8 +1808,7 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 289
 290
 291
-292
-293</pre>
+292</pre>
 </div>
 </td>
 <td class="code">
@@ -1830,7 +1820,7 @@ create_task_log<span class="p">(</span><span class="bp">self</span><span class="
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        task_id (str): Task identifier</span>
-<span class="sd">        case_task_log (CaseTaskLocg): Task log as defined in models.py</span>
+<span class="sd">        case_task_log (CaseTaskLocg): Instance of [CaseTaskLog][thehive4py.models.CaseTaskLog]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of a case</span>
@@ -1937,7 +1927,8 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>402
+<pre><span></span>401
+402
 403
 404
 405
@@ -1956,8 +1947,7 @@ delete_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 418
 419
 420
-421
-422</pre>
+421</pre>
 </div>
 </td>
 <td class="code">
@@ -2076,7 +2066,8 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>845
+<pre><span></span>844
+845
 846
 847
 848
@@ -2092,8 +2083,7 @@ and <code>+</code> for ascending order</p>
 858
 859
 860
-861
-862</pre>
+861</pre>
 </div>
 </td>
 <td class="code">
@@ -2209,7 +2199,8 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>551
+<pre><span></span>550
+551
 552
 553
 554
@@ -2224,8 +2215,7 @@ and <code>+</code> for ascending order</p>
 563
 564
 565
-566
-567</pre>
+566</pre>
 </div>
 </td>
 <td class="code">
@@ -2340,7 +2330,8 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>384
+<pre><span></span>383
+384
 385
 386
 387
@@ -2355,8 +2346,7 @@ and <code>+</code> for ascending order</p>
 396
 397
 398
-399
-400</pre>
+399</pre>
 </div>
 </td>
 <td class="code">
@@ -2471,7 +2461,8 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>424
+<pre><span></span>423
+424
 425
 426
 427
@@ -2486,8 +2477,7 @@ and <code>+</code> for ascending order</p>
 436
 437
 438
-439
-440</pre>
+439</pre>
 </div>
 </td>
 <td class="code">
@@ -2718,7 +2708,8 @@ get_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>825
+<pre><span></span>824
+825
 826
 827
 828
@@ -2735,8 +2726,7 @@ get_alert<span class="p">(</span><span class="bp">self</span><span class="p">,</
 839
 840
 841
-842
-843</pre>
+842</pre>
 </div>
 </td>
 <td class="code">
@@ -2836,7 +2826,8 @@ get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>363
+<pre><span></span>362
+363
 364
 365
 366
@@ -2854,8 +2845,7 @@ get_case<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 378
 379
 380
-381
-382</pre>
+381</pre>
 </div>
 </td>
 <td class="code">
@@ -2981,7 +2971,8 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>442
+<pre><span></span>441
+442
 443
 444
 445
@@ -3023,8 +3014,7 @@ and <code>+</code> for ascending order</p>
 481
 482
 483
-484
-485</pre>
+484</pre>
 </div>
 </td>
 <td class="code">
@@ -3149,7 +3139,8 @@ get_case_task<span class="p">(</span><span class="bp">self</span><span class="p"
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>668
+<pre><span></span>667
+668
 669
 670
 671
@@ -3166,8 +3157,7 @@ get_case_task<span class="p">(</span><span class="bp">self</span><span class="p"
 682
 683
 684
-685
-686</pre>
+685</pre>
 </div>
 </td>
 <td class="code">
@@ -3292,7 +3282,8 @@ and <code>+</code> for ascending order</p>
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>487
+<pre><span></span>486
+487
 488
 489
 490
@@ -3333,8 +3324,7 @@ and <code>+</code> for ascending order</p>
 525
 526
 527
-528
-529</pre>
+528</pre>
 </div>
 </td>
 <td class="code">
@@ -3458,7 +3448,8 @@ get_case_template<span class="p">(</span><span class="bp">self</span><span class
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>569
+<pre><span></span>568
+569
 570
 571
 572
@@ -3486,8 +3477,7 @@ get_case_template<span class="p">(</span><span class="bp">self</span><span class
 594
 595
 596
-597
-598</pre>
+597</pre>
 </div>
 </td>
 <td class="code">
@@ -3689,7 +3679,8 @@ get_linked_cases<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>531
+<pre><span></span>530
+531
 532
 533
 534
@@ -3706,8 +3697,7 @@ get_linked_cases<span class="p">(</span><span class="bp">self</span><span class=
 545
 546
 547
-548
-549</pre>
+548</pre>
 </div>
 </td>
 <td class="code">
@@ -3807,7 +3797,8 @@ get_task_log<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>688
+<pre><span></span>687
+688
 689
 690
 691
@@ -3824,8 +3815,7 @@ get_task_log<span class="p">(</span><span class="bp">self</span><span class="p">
 702
 703
 704
-705
-706</pre>
+705</pre>
 </div>
 </td>
 <td class="code">
@@ -3925,7 +3915,8 @@ get_task_logs<span class="p">(</span><span class="bp">self</span><span class="p"
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>708
+<pre><span></span>707
+708
 709
 710
 711
@@ -3942,8 +3933,7 @@ get_task_logs<span class="p">(</span><span class="bp">self</span><span class="p"
 722
 723
 724
-725
-726</pre>
+725</pre>
 </div>
 </td>
 <td class="code">
@@ -4132,7 +4122,8 @@ mark_alert_as_read<span class="p">(</span><span class="bp">self</span><span clas
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>750
+<pre><span></span>749
+750
 751
 752
 753
@@ -4149,8 +4140,7 @@ mark_alert_as_read<span class="p">(</span><span class="bp">self</span><span clas
 764
 765
 766
-767
-768</pre>
+767</pre>
 </div>
 </td>
 <td class="code">
@@ -4250,7 +4240,8 @@ mark_alert_as_unread<span class="p">(</span><span class="bp">self</span><span cl
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>770
+<pre><span></span>769
+770
 771
 772
 773
@@ -4267,8 +4258,7 @@ mark_alert_as_unread<span class="p">(</span><span class="bp">self</span><span cl
 784
 785
 786
-787
-788</pre>
+787</pre>
 </div>
 </td>
 <td class="code">
@@ -4618,7 +4608,7 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <td><code>alert</code></td>
 <td><code>Alert</code></td>
 <td>
-<p>Alert instance as described in the models module</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.Alert">Alert</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -4673,7 +4663,8 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>790
+<pre><span></span>789
+790
 791
 792
 793
@@ -4705,8 +4696,7 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 819
 820
 821
-822
-823</pre>
+822</pre>
 </div>
 </td>
 <td class="code">
@@ -4717,7 +4707,7 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        alert_id (str): Id of the alert</span>
-<span class="sd">        alert (Alert): Alert instance as described in the models module</span>
+<span class="sd">        alert (Alert): Instance of [Alert][thehive4py.models.Alert]</span>
 <span class="sd">        fields (Array): Optional parameter, an array of field names, the ones we want to update</span>
 
 <span class="sd">            Updatable fields are: [`tlp`, `severity`, `tags`, `caseTemplate`, `title`, `description`, `customFields`]</span>
@@ -4775,7 +4765,7 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <td><code>case</code></td>
 <td><code>Case</code></td>
 <td>
-<p>The case to update. The case's <code>id</code> determines which case to update.</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.Case">Case</a> to update. The case's <code>id</code> determines which case to update.</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -4869,7 +4859,7 @@ update_case<span class="p">(</span><span class="bp">self</span><span class="p">,
 <span class="sd">    Update a case.</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        case (Case): The case to update. The case's `id` determines which case to update.</span>
+<span class="sd">        case (Case): Instance of [Case][thehive4py.models.Case] to update. The case's `id` determines which case to update.</span>
 <span class="sd">        fields (Array): Optional parameter, an array of fields names, the ones we want to update</span>
 
 <span class="sd">            Updatable fields are: [`title`, `description`, `severity`, `startDate`, `owner`, `flag`, `tlp`, `pap`, `tags`, `status`,</span>
@@ -4931,7 +4921,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <td><code>case_observable</code></td>
 <td><code>CaseObservable</code></td>
 <td>
-<p>TheHive observable as defined in models.py</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseObservable">CaseObservable</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -4977,7 +4967,8 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>333
+<pre><span></span>332
+333
 334
 335
 336
@@ -5004,8 +4995,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 357
 358
 359
-360
-361</pre>
+360</pre>
 </div>
 </td>
 <td class="code">
@@ -5017,7 +5007,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        observable_id: Observable identifier</span>
-<span class="sd">        case_observable (CaseObservable): TheHive observable as defined in models.py</span>
+<span class="sd">        case_observable (CaseObservable): Instance of [CaseObservable][thehive4py.models.CaseObservable]</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        response (requests.Response): Response object including a JSON description of the updated case observable</span>
@@ -5069,7 +5059,8 @@ update_case_observables<span class="p">(</span><span class="bp">self</span><span
 <td><code>observable</code></td>
 <td><code>CaseObservable</code></td>
 <td>
-<p>The case observable to update. The observable's <code>id</code> determines which case to update.</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseObservable">CaseObservable</a> to update. 
+The observable's <code>id</code> determines which case to update.</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -5124,7 +5115,8 @@ update_case_observables<span class="p">(</span><span class="bp">self</span><span
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>864
+<pre><span></span>863
+864
 865
 866
 867
@@ -5162,7 +5154,8 @@ update_case_observables<span class="p">(</span><span class="bp">self</span><span
 <span class="sd">    Update a case observable</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        observable (CaseObservable): The case observable to update. The observable's `id` determines which case to update.</span>
+<span class="sd">        observable (CaseObservable): Instance of [CaseObservable][thehive4py.models.CaseObservable] to update. </span>
+<span class="sd">            The observable's `id` determines which case to update.</span>
 <span class="sd">        fields (Array): Optional parameter, an array of fields names, the ones we want to update.</span>
 
 <span class="sd">            Updatable fields are: [`tlp`, `ioc`, `flag`, `sighted`, `tags`, `message`]</span>
@@ -5216,7 +5209,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <td><code>task</code></td>
 <td><code>CaseTask</code></td>
 <td>
-<p>Case task object as described in model.py</p>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.CaseTask">CaseTask</a></p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -5271,7 +5264,8 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <tr>
 <td class="linenos">
 <div class="linenodiv">
-<pre><span></span>231
+<pre><span></span>230
+231
 232
 233
 234
@@ -5301,8 +5295,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 258
 259
 260
-261
-262</pre>
+261</pre>
 </div>
 </td>
 <td class="code">
@@ -5312,7 +5305,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <span class="sd">    Update a case task</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        task (CaseTask): Case task object as described in model.py</span>
+<span class="sd">        task (CaseTask): Instance of [CaseTask][thehive4py.models.CaseTask]</span>
 <span class="sd">        fields (array): Arry of strings representing CaseTask properties to be updated</span>
 
 <span class="sd">            Updatable fields are: [`title`, `description`, `status`, `order`, `user`, `owner`, `flag`, `endDate`]</span>
@@ -5353,6 +5346,14 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 </div>
 </div>
 </div>
+<hr/>
+<div class="md-source-date">
+<small>
+    
+      Last update: June 2, 2020 07:16:07
+    
+  </small>
+</div>
 </article>
 </div>
 </div>
@@ -5360,7 +5361,7 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--prev" href="../auth/" rel="prev" title="Authentication">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../auth/" rel="prev" title="Auth">
 <div class="md-footer-nav__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
 </div>
@@ -5369,17 +5370,17 @@ update_case_task<span class="p">(</span><span class="bp">self</span><span class=
 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Authentication
+                Auth
               </div>
 </div>
 </a>
-<a class="md-footer-nav__link md-footer-nav__link--next" href="../query/" rel="next" title="Query DSL">
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../query/" rel="next" title="Query">
 <div class="md-footer-nav__title">
 <div class="md-ellipsis">
 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Query DSL
+                Query
               </div>
 </div>
 <div class="md-footer-nav__button md-icon">

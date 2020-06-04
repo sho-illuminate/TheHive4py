@@ -113,8 +113,8 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../.." title="Home">
-      Home
+<a class="md-nav__link" href="../.." title="TheHive4py">
+      TheHive4py
     </a>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -248,6 +248,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.add_float">
+    add_float()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.add_integer">
     add_integer()
   </a>
@@ -260,6 +265,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.add_string">
     add_string()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.build">
+    build()
   </a>
 </li>
 </ul>
@@ -279,12 +289,26 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.JSONSerializable">
+    JSONSerializable
+  </a>
+<nav aria-label="JSONSerializable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.JSONSerializable.jsonify">
+    jsonify()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../auth/" title="Authentication">
-      Authentication
+<a class="md-nav__link" href="../auth/" title="Auth">
+      Auth
     </a>
 </li>
 <li class="md-nav__item">
@@ -293,8 +317,8 @@
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../query/" title="Query DSL">
-      Query DSL
+<a class="md-nav__link" href="../query/" title="Query">
+      Query
     </a>
 </li>
 <li class="md-nav__item">
@@ -350,13 +374,13 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../changelog/" title="Change log">
-      Change log
+<a class="md-nav__link" href="../../changelog/" title="Change Log">
+      Change Log
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../code_of_conduct/" title="Code of conduct">
-      Code of conduct
+<a class="md-nav__link" href="../../code_of_conduct/" title="Contributor Covenant Code of Conduct">
+      Contributor Covenant Code of Conduct
     </a>
 </li>
 </ul>
@@ -471,6 +495,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.add_float">
+    add_float()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.add_integer">
     add_integer()
   </a>
@@ -485,6 +514,11 @@
     add_string()
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.CustomFieldHelper.build">
+    build()
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -497,6 +531,20 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.models.CustomJsonEncoder.default">
     default()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.JSONSerializable">
+    JSONSerializable
+  </a>
+<nav aria-label="JSONSerializable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.models.JSONSerializable.jsonify">
+    jsonify()
   </a>
 </li>
 </ul>
@@ -1408,7 +1456,36 @@ update<span class="p">(</span><span class="bp">self</span><span class="p">,</spa
 add_boolean<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.models.CustomFieldHelper.add_boolean" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>add_boolean</p>
+<p>Add a custom field of type <code>bool</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>name of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>bool</code></td>
+<td>
+<p>True or False, value of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1417,7 +1494,78 @@ add_boolean<span class="p">(</span><span class="bp">self</span><span class="p">,
 add_date<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.models.CustomFieldHelper.add_date" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>add_date</p>
+<p>Add a custom field of type <code>date</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>name of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>int</code></td>
+<td>
+<p>number of milliseconds representing a timestamp (Example: int(time.time())*1000)</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.models.CustomFieldHelper.add_float">
+<code class="highlight language-python">
+add_float<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.models.CustomFieldHelper.add_float" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Add a custom field of type <code>float</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>name of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>float</code></td>
+<td>
+<p>value of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is method that work for TheHive 4 ONLY</p>
+</div>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1426,7 +1574,40 @@ add_date<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 add_integer<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.models.CustomFieldHelper.add_integer" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>add_integer</p>
+<p>Add a custom field of type <code>integer</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>name of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>int</code></td>
+<td>
+<p>value of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is method that work for TheHive 4 ONLY</p>
+</div>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1435,7 +1616,40 @@ add_integer<span class="p">(</span><span class="bp">self</span><span class="p">,
 add_number<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.models.CustomFieldHelper.add_number" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>add_number</p>
+<p>Add a custom field of type <code>number</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>name of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>number</code></td>
+<td>
+<p>value of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is method that work for TheHive 3 ONLY</p>
+</div>
 </div>
 </div>
 <div class="doc doc-object doc-method">
@@ -1444,7 +1658,63 @@ add_number<span class="p">(</span><span class="bp">self</span><span class="p">,<
 add_string<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.models.CustomFieldHelper.add_string" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>add_string</p>
+<p>Add a custom field of type <code>string</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>name of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>str</code></td>
+<td>
+<p>value of the custom field</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.models.CustomFieldHelper.build">
+<code class="highlight language-python">
+build<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.models.CustomFieldHelper.build" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Builds the custom field value dict as expected by TheHive, 
+maintining the order of the fields, specified by <code>order</code></p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>A json representation of the custom fields map</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -1455,6 +1725,8 @@ add_string<span class="p">(</span><span class="bp">self</span><span class="p">,<
 <code>CustomJsonEncoder</code>
 <a class="headerlink" href="#thehive4py.models.CustomJsonEncoder" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
+<p>Custom JSON encoder class that takes into account <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.JSONSerializable">thehive4py.models.JSONSerializable</a> instances and 
+<code>datetime.datetime</code> objects</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="thehive4py.models.CustomJsonEncoder.default">
@@ -1462,22 +1734,66 @@ add_string<span class="p">(</span><span class="bp">self</span><span class="p">,<
 default<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.models.CustomJsonEncoder.default" title="Permanent link">#</a></h3>
 <div class="doc doc-contents">
-<p>Implement this method in a subclass such that it returns
-a serializable object for <code>o</code>, or calls the base implementation
-(to raise a <code>TypeError</code>).</p>
-<p>For example, to support arbitrary iterators, you could
-implement default like this::</p>
-<div class="codehilite">
-<pre><span></span><code><span class="err">def default(self, o):</span>
-<span class="err">    !!! try</span>
-<span class="err">        iterable = iter(o)</span>
-<span class="err">    except TypeError:</span>
-<span class="err">        pass</span>
-<span class="err">    !!! else</span>
-<span class="err">        return list(iterable)</span>
-<span class="err">    # Let the base class default method raise the TypeError</span>
-<span class="err">    return JSONEncoder.default(self, o)</span>
-</code></pre>
+<p>Method to serialize <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.JSONSerializable">thehive4py.models.JSONSerializable</a> objects.</p>
+<p>Used by <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.JSONSerializable.jsonify">thehive4py.models.JSONSerializable.jsonify</a> method</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="thehive4py.models.JSONSerializable">
+<code>JSONSerializable</code>
+<a class="headerlink" href="#thehive4py.models.JSONSerializable" title="Permanent link">#</a></h2>
+<div class="doc doc-contents">
+<p>Abstract class of all the models classes. </p>
+<p>It defines utility methods called <code>jsonify</code> used to get a model object's JSON representation</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.models.JSONSerializable.jsonify">
+<code class="highlight language-python">
+jsonify<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="p">[])</span> </code>
+<a class="headerlink" href="#thehive4py.models.JSONSerializable.jsonify" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>A method that returns a stringyfied JSON representing a model object</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>excludes</code></td>
+<td><code>str[]</code></td>
+<td>
+<p>list of fields to exclude from the returned JSON object.</p>
+</td>
+<td><code>[]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str</code></td>
+<td>
+<p>the JSON string of the object.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -1486,6 +1802,13 @@ implement default like this::</p>
 </div>
 </div>
 </div>
+<hr/>
+<div class="md-source-date">
+<small>
+    
+      Last update: May 29, 2020 15:27:12
+    
+  </small>
 </div>
 </article>
 </div>
@@ -1494,7 +1817,7 @@ implement default like this::</p>
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--prev" href="../.." rel="prev" title="Home">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../.." rel="prev" title="TheHive4py">
 <div class="md-footer-nav__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
 </div>
@@ -1503,17 +1826,17 @@ implement default like this::</p>
 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                TheHive4py
               </div>
 </div>
 </a>
-<a class="md-footer-nav__link md-footer-nav__link--next" href="../auth/" rel="next" title="Authentication">
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../auth/" rel="next" title="Auth">
 <div class="md-footer-nav__title">
 <div class="md-ellipsis">
 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Authentication
+                Auth
               </div>
 </div>
 <div class="md-footer-nav__button md-icon">
