@@ -502,7 +502,30 @@ without the need to use JSON objects.</p>
 <li><a href="./api#thehive4py.api.TheHiveApi.find_alerts">thehive4py.api.find_alerts</a></li>
 <li><a href="./api#thehive4py.api.TheHiveApi.find_tasks">thehive4py.api.find_tasks</a></li>
 </ul>
-<p>A query is a defined by criteria, described below</p>
+<p>A query is a defined by on of the criteria described below.</p>
+<p>A query could be used like below:</p>
+<div class="highlight">
+<pre><span></span><code><span class="c1"># Define the query</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">And</span><span class="p">([</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'owner'</span><span class="p">,</span> <span class="s1">'admin'</span><span class="p">),</span>
+    <span class="n">Between</span><span class="p">(</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="n">Not</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'Deleted'</span><span class="p">)),</span>
+    <span class="n">Child</span><span class="p">(</span><span class="s1">'case_artifact'</span><span class="p">,</span> <span class="n">And</span><span class="p">([</span>
+        <span class="n">Eq</span><span class="p">(</span><span class="s1">'ioc'</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+        <span class="n">In</span><span class="p">(</span><span class="s1">'dataType'</span><span class="p">,</span> <span class="s1">'file'</span><span class="p">,</span> <span class="s1">'ip'</span><span class="p">,</span> <span class="s1">'domain'</span><span class="p">)</span>
+    <span class="p">]))</span>
+<span class="p">])</span>
+
+<span class="c1"># Call find_cases method to search for all the case, sorted by descending created date, </span>
+<span class="c1"># and verifying the following set of conditions:</span>
+<span class="c1"># - owned by admin</span>
+<span class="c1"># - having tlp between GREEN and RED</span>
+<span class="c1"># - not deleted</span>
+<span class="c1"># - having observables of type file, ip or domain that are flagged as IOC</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">find_cases</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">createdAt</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+</code></pre>
+</div>
 <div class="doc doc-children">
 <div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="thehive4py.query.And">
@@ -592,10 +615,83 @@ And<span class="p">(</span><span class="o">*</span><span class="n">criteria</spa
 Between<span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">from_value</span><span class="p">,</span> <span class="n">to_value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Between" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records having <code>field</code>'s value included in a range defined by <code>from_value</code> and <code>to_value</code>. 
+This is an idea criterion to seahrch using date conditions. For example</p>
+<ul>
+<li>search for cases created between two dates</li>
+<li>search for alerts with cvss custom field greater that 2 and lesser than 9</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>str</code></td>
+<td>
+<p>field name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>from_value</code></td>
+<td><code>Number</code></td>
+<td>
+<p>Lower limit of the range</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>to_value</code></td>
+<td><code>Number</code></td>
+<td>
+<p>Higher limit of the range</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for alerts with cvss custom field greater that 2 and lesser than 9</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Between</span><span class="p">(</span><span class="s1">'customFields.cvss.float'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_between"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"customFields.cvss.float"</span><span class="p">,</span>
+        <span class="nt">"_from"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">"_to"</span><span class="p">:</span> <span class="mi">9</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -604,10 +700,89 @@ Between<span class="p">(</span><span class="n">field</span><span class="p">,</sp
 Child<span class="p">(</span><span class="n">tpe</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Child" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records by applying a filter on their children using a criterion. For example</p>
+<ul>
+<li>search for cases having file observables</li>
+<li>search for cases having a specific ip observable</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tpe</code></td>
+<td><code>str</code></td>
+<td>
+<p>class name of the child: <code>case_task</code>, <code>case_artifact</code>...</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>criterion</code></td>
+<td><code>Any</code></td>
+<td>
+<p>Any criterion defined by functions from the query module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for cases having iocs of type file</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Child</span><span class="p">(</span><span class="s1">'case_artifact'</span><span class="p">,</span> <span class="n">And</span><span class="p">([</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'dataType'</span><span class="p">,</span> <span class="s1">'file'</span><span class="p">),</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'ioc'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">]))</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_child"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_type"</span><span class="p">:</span> <span class="s2">"case_artifact"</span><span class="p">,</span>
+        <span class="nt">"_query"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">"_and"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"dataType"</span><span class="p">,</span>
+                        <span class="nt">"_value"</span><span class="p">:</span> <span class="s2">"file"</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"ioc"</span><span class="p">,</span>
+                        <span class="nt">"_value"</span><span class="p">:</span> <span class="kc">true</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -616,10 +791,61 @@ Child<span class="p">(</span><span class="n">tpe</span><span class="p">,</span> 
 Contains<span class="p">(</span><span class="n">field</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Contains" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records where <code>field</code> id defined. For example</p>
+<ul>
+<li>search for cases that have the custom field <code>customer</code></li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>str</code></td>
+<td>
+<p>field name        </p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for cases having a 'customer' custom field</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Contains</span><span class="p">(</span><span class="s1">'customFields.customer'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_contains"</span><span class="p">:</span> <span class="s2">"customFields.customer"</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -628,10 +854,74 @@ Contains<span class="p">(</span><span class="n">field</span><span class="p">)</s
 ContainsString<span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.ContainsString" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for objects having a text field's value like the specified <code>value</code>. 
+It's a wildcard operator that wraps the searched value with asteriscs. It operates the same way a the <code>Like</code> criterion For example:</p>
+<ul>
+<li>search for cases where title is like <code>*malspam*</code></li>
+<li>search for observable where description contains the text <code>*malware*</code></li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>value</code></td>
+<td>
+<p>field name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>Any</code></td>
+<td>
+<p>searched value</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Search for tasks where title contains 'Communication'</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ContainsString</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Communication'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_wildcard"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"title"</span><span class="p">,</span>
+        <span class="nt">"_value"</span><span class="p">:</span> <span class="s2">"*Communication*"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -640,10 +930,73 @@ ContainsString<span class="p">(</span><span class="n">field</span><span class="p
 EndsWith<span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.EndsWith" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for objects having a text field's value end with <code>value</code>. 
+It's a wildcard operator that adds the <code>*</code> if not specified, at the beginning of <code>value</code>. For example:</p>
+<ul>
+<li>search for filename observables ending with <code>.exe</code></li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>value</code></td>
+<td>
+<p>field name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>Any</code></td>
+<td>
+<p>searched value</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Search for tasks where title stats with 'Communication'</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">EndsWith</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="s1">'.png'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_wildcard"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"data"</span><span class="p">,</span>
+        <span class="nt">"_value"</span><span class="p">:</span> <span class="s2">"*.png"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -862,10 +1215,62 @@ Gte<span class="p">(</span><span class="n">field</span><span class="p">,</span> 
 Id<span class="p">(</span><span class="nb">id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Id" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records by id. For example</p>
+<ul>
+<li>search for a case by its id</li>
+<li>search for an alert by its id</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>str</code></td>
+<td>
+<p>the id's value</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for as case by id</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Id</span><span class="p">(</span><span class="s1">'1234545643'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_id"</span><span class="p">:</span> <span class="s2">"1234545643"</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -953,9 +1358,78 @@ In<span class="p">(</span><span class="n">field</span><span class="p">,</span> <
 Like<span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Like" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for objects having a text field's value like the specified <code>value</code>. 
+It's a wildcard operator when the searched value must specify asteriscs. For example:</p>
+<ul>
+<li>search for cases where title is like <code>*malspam*</code></li>
+<li>search for observable where description contains the text <code>*malware*</code></li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>value</code></td>
+<td>
+<p>field name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>Any</code></td>
+<td>
+<p>searched value</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Search for tasks where title contains 'Communication'</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Like</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'*Communication*'</span><span class="p">)</span>
+</code></pre>
+</div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_like"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"title"</span><span class="p">,</span>
+        <span class="nt">"_value"</span><span class="p">:</span> <span class="s2">"*Communication*"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the <code>*</code> are not specified, the exact same text will be searched for.
+<code>Like('title', 'MISP')</code> will search for titles equal to <code>'MISP'</code></p>
 </div>
 </div>
 </div>
@@ -1261,10 +1735,89 @@ Or<span class="p">(</span><span class="o">*</span><span class="n">criteria</span
 Parent<span class="p">(</span><span class="n">tpe</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Parent" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records by filtering the parents using a criterion. For example</p>
+<ul>
+<li>search for observables of TLP:RED cases</li>
+<li>search for logs of tasks called 'Communication'</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tpe</code></td>
+<td><code>str</code></td>
+<td>
+<p>class name of the parent: <code>case</code>, <code>case_task</code>, <code>case_artifact</code>...</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>criterion</code></td>
+<td><code>Any</code></td>
+<td>
+<p>Any criterion defined by functions from the query module</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for tasks belonging to open cases with TLP=RED</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="s1">'case'</span><span class="p">,</span> <span class="n">And</span><span class="p">([</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'Open'</span><span class="p">),</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">]))</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_parent"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_type"</span><span class="p">:</span> <span class="s2">"case"</span><span class="p">,</span>
+        <span class="nt">"_query"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">"_and"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"status"</span><span class="p">,</span>
+                        <span class="nt">"_value"</span><span class="p">:</span> <span class="s2">"Open"</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"tlp"</span><span class="p">,</span>
+                        <span class="nt">"_value"</span><span class="p">:</span> <span class="mi">3</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -1273,10 +1826,75 @@ Parent<span class="p">(</span><span class="n">tpe</span><span class="p">,</span>
 ParentId<span class="p">(</span><span class="n">tpe</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.ParentId" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records by their parent's id. For example</p>
+<ul>
+<li>search for observables by case id</li>
+<li>search for tasks by case id</li>
+<li>search for logs by task id</li>
+<li>search for jobs by observable id</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tpe</code></td>
+<td><code>str</code></td>
+<td>
+<p>class name of the parent: <code>case</code>, <code>case_task</code>, <code>case_artifact</code>...</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>str</code></td>
+<td>
+<p>the parent id's value</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for tasks of a case by id</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ParentId</span><span class="p">(</span><span class="s1">'case'</span><span class="p">,</span> <span class="s1">'1234545643'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_parent"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_type"</span><span class="p">:</span> <span class="s2">"case"</span><span class="p">,</span>
+        <span class="nt">"_id"</span><span class="p">:</span> <span class="s2">"1234545643"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -1285,10 +1903,74 @@ ParentId<span class="p">(</span><span class="n">tpe</span><span class="p">,</spa
 StartsWith<span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.StartsWith" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for objects having a text field's value start with <code>value</code>. 
+It's a wildcard operator that adds the <code>*</code> if not specified, at the end of <code>value</code>. For example:</p>
+<ul>
+<li>search for cases having a tag starting with <code>malspam</code></li>
+<li>search for filename observables starting with <code>dridex</code></li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>value</code></td>
+<td>
+<p>field name</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>Any</code></td>
+<td>
+<p>searched value</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Search for tasks where title stats with 'Communication'</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">StartsWith</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Communication'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_wildcard"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"_field"</span><span class="p">:</span> <span class="s2">"title"</span><span class="p">,</span>
+        <span class="nt">"_value"</span><span class="p">:</span> <span class="s2">"Communication*"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="doc doc-object doc-function">
@@ -1297,9 +1979,69 @@ StartsWith<span class="p">(</span><span class="n">field</span><span class="p">,<
 String<span class="p">(</span><span class="n">query_string</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.String" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
+<p>A criterion used to search for objects using Elasticsearch querystring syntax. For example</p>
+<ul>
+<li>search for case using <code>title:misp AND tlp:2</code></li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tpe</code></td>
+<td><code>str</code></td>
+<td>
+<p>object type's name as defined in TheHive: </p>
+<p>Possible values: <code>all</code>, <code>case</code>, <code>case_task</code>, <code>case_task_log</code>, <code>case_artifact</code>, <code>alert</code>, <code>case_artifact_job</code>, <code>audit</code></p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for casee with TLP:AMBER and having the word 'misp' on the title</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s1">'title:misp AND tlp:2'</span><span class="p">)</span>
+</code></pre>
+</div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_string"</span><span class="p">:</span> <span class="s2">"title:misp AND tlp:2"</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>This criterion is deprecated and won't be ported to TheHive 4</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This criterion is available in TheHive 3 ONLY</p>
 </div>
 </div>
 </div>
@@ -1309,10 +2051,62 @@ String<span class="p">(</span><span class="n">query_string</span><span class="p"
 Type<span class="p">(</span><span class="n">tpe</span><span class="p">)</span> </code>
 <a class="headerlink" href="#thehive4py.query.Type" title="Permanent link">#</a></h2>
 <div class="doc doc-contents">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO</p>
+<p>A criterion used to search for records of the type defined by <code>tpe</code>. For example</p>
+<ul>
+<li>search for objects of type 'audit'</li>
+<li>search for objects of type 'alert'</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tpe</code></td>
+<td><code>str</code></td>
+<td>
+<p>object type's name as defined in TheHive: <code>all</code>, <code>case</code>, <code>case_task</code>, <code>case_task_log</code>, <code>case_artifact</code>, <code>alert</code>, <code>case_artifact_job</code>, <code>audit</code></p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dict</code></td>
+<td>
+<p>JSON repsentation of the criterion
+    <div class="highlight">
+<pre><span></span><code><span class="c1"># Query to search for alerts</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Type</span><span class="p">(</span><span class="s1">'alert'</span><span class="p">)</span>
+</code></pre>
 </div>
+    produces
+    <div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"_type"</span><span class="p">:</span> <span class="s2">"alert"</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
