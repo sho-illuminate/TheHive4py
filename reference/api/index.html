@@ -642,7 +642,7 @@
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.__init__">
 <code class="highlight language-python">
-__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">principal</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="p">{},</span> <span class="n">cert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> </code>
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">principal</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="p">{},</span> <span class="n">cert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> </code>
 <span class="doc doc-properties">
 <small class="doc doc-property doc-property-special"><code>special</code></small>
 </span>
@@ -685,14 +685,6 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <td><code>None</code></td>
 </tr>
 <tr>
-<td><code>organisation</code></td>
-<td><code>str</code></td>
-<td>
-<p>The name of the organisation against which api calls will be run. Defaults to None</p>
-</td>
-<td><code>None</code></td>
-</tr>
-<tr>
 <td><code>proxies</code></td>
 <td><code>dict</code></td>
 <td>
@@ -716,6 +708,14 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 </td>
 <td><code>True</code></td>
 </tr>
+<tr>
+<td><code>organisation</code></td>
+<td><code>str</code></td>
+<td>
+<p>The name of the organisation against which api calls will be run. Defaults to None</p>
+</td>
+<td><code>None</code></td>
+</tr>
 </tbody>
 </table>
 <details class="note"><summary>Examples</summary><div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">Basic</label><div class="tabbed-content">
@@ -734,9 +734,9 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <span class="p">}</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://my_thehive:9000'</span><span class="p">,</span>
     <span class="s1">'my_api_key'</span><span class="p">,</span>
-    <span class="n">organisation</span><span class="o">=</span><span class="s1">'my-org'</span><span class="p">,</span>
-    <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span>
-    <span class="n">cert</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">proxies</span><span class="p">,</span>
+    <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">'my-org'</span>
 <span class="p">)</span>
 </code></pre>
 </div>
@@ -811,7 +811,7 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 </td>
 <td class="code">
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">principal</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="p">{},</span> <span class="n">cert</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">principal</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="p">{},</span> <span class="n">cert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">organisation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Python API client for TheHive.</span>
 
@@ -819,7 +819,6 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <span class="sd">        url (str): URL of Thehive instance, including the port. Ex: `http://myserver:9000`</span>
 <span class="sd">        principal (str): The API key, or the username if basic authentication is used.</span>
 <span class="sd">        password (str): The password for basic authentication or None. Defaults to None</span>
-<span class="sd">        organisation (str): The name of the organisation against which api calls will be run. Defaults to None</span>
 <span class="sd">        proxies (dict): The proxy configuration, would have `http` and `https` attributes. Defaults to {}</span>
 <span class="sd">            ```python</span>
 <span class="sd">            proxies: {</span>
@@ -828,6 +827,7 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <span class="sd">            }</span>
 <span class="sd">            ```</span>
 <span class="sd">        cert (bool): Wether or not to enable SSL certificate validation</span>
+<span class="sd">        organisation (str): The name of the organisation against which api calls will be run. Defaults to None</span>
 
 
 <span class="sd">    ??? note "Examples"</span>
@@ -848,9 +848,9 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <span class="sd">            }</span>
 <span class="sd">            api = TheHiveApi('http://my_thehive:9000',</span>
 <span class="sd">                'my_api_key',</span>
-<span class="sd">                organisation='my-org',</span>
-<span class="sd">                proxies=proxies,</span>
-<span class="sd">                cert=True</span>
+<span class="sd">                proxies,</span>
+<span class="sd">                True,</span>
+<span class="sd">                'my-org'</span>
 <span class="sd">            )</span>
 <span class="sd">            ```</span>
 <span class="sd">    """</span>
@@ -861,7 +861,7 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
     <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span> <span class="o">=</span> <span class="n">organisation</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">BasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">principal</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">BasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">principal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">BearerAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">principal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisation</span><span class="p">)</span>
 
