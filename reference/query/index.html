@@ -506,15 +506,15 @@ without the need to use JSON objects.</p>
 <p>A query could be used like below:</p>
 <div class="highlight">
 <pre><span></span><code><span class="c1"># Define the query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">And</span><span class="p">([</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
     <span class="n">Eq</span><span class="p">(</span><span class="s1">'owner'</span><span class="p">,</span> <span class="s1">'admin'</span><span class="p">),</span>
     <span class="n">Between</span><span class="p">(</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
     <span class="n">Not</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'Deleted'</span><span class="p">)),</span>
-    <span class="n">Child</span><span class="p">(</span><span class="s1">'case_artifact'</span><span class="p">,</span> <span class="n">And</span><span class="p">([</span>
+    <span class="n">Child</span><span class="p">(</span><span class="s1">'case_artifact'</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span>
         <span class="n">Eq</span><span class="p">(</span><span class="s1">'ioc'</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
-        <span class="n">In</span><span class="p">(</span><span class="s1">'dataType'</span><span class="p">,</span> <span class="s1">'file'</span><span class="p">,</span> <span class="s1">'ip'</span><span class="p">,</span> <span class="s1">'domain'</span><span class="p">)</span>
-    <span class="p">]))</span>
-<span class="p">])</span>
+        <span class="n">In</span><span class="p">(</span><span class="s1">'dataType'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'file'</span><span class="p">,</span> <span class="s1">'ip'</span><span class="p">,</span> <span class="s1">'domain'</span><span class="p">])</span>
+    <span class="p">))</span>
+<span class="p">)</span>
 
 <span class="c1"># Call find_cases method to search for all the case, sorted by descending created date, </span>
 <span class="c1"># and verifying the following set of conditions:</span>
@@ -523,7 +523,7 @@ without the need to use JSON objects.</p>
 <span class="c1"># - not deleted</span>
 <span class="c1"># - having observables of type file, ip or domain that are flagged as IOC</span>
 
-<span class="n">api</span><span class="o">.</span><span class="n">find_cases</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">createdAt</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">find_cases</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="s1">'-createdAt'</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
 </code></pre>
 </div>
 <div class="doc doc-children">
@@ -749,10 +749,10 @@ Child<span class="p">(</span><span class="n">tpe</span><span class="p">,</span> 
 <p>JSON repsentation of the criterion
     <div class="highlight">
 <pre><span></span><code><span class="c1"># Query to search for cases having iocs of type file</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">Child</span><span class="p">(</span><span class="s1">'case_artifact'</span><span class="p">,</span> <span class="n">And</span><span class="p">([</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Child</span><span class="p">(</span><span class="s1">'case_artifact'</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span>
     <span class="n">Eq</span><span class="p">(</span><span class="s1">'dataType'</span><span class="p">,</span> <span class="s1">'file'</span><span class="p">),</span>
     <span class="n">Eq</span><span class="p">(</span><span class="s1">'ioc'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="p">]))</span>
+<span class="p">))</span>
 </code></pre>
 </div>
     produces
@@ -1689,10 +1689,10 @@ Or<span class="p">(</span><span class="o">*</span><span class="n">criteria</span
 <pre><span></span><code><span class="c1"># Query to search for cases assigned to jdoe or are flagged and open</span>
 <span class="n">query</span> <span class="o">=</span> <span class="n">Or</span><span class="p">(</span>
     <span class="n">Eq</span><span class="p">(</span><span class="s1">'owner'</span><span class="p">,</span> <span class="s1">'jdoe'</span><span class="p">),</span>
-    <span class="n">And</span><span class="p">([</span>
+    <span class="n">And</span><span class="p">(</span>
         <span class="n">Eq</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'Open'</span><span class="p">),</span>
         <span class="n">Eq</span><span class="p">(</span><span class="s1">'flag'</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
-    <span class="p">])</span>
+    <span class="p">)</span>
 <span class="p">)</span>
 </code></pre>
 </div>
@@ -1784,10 +1784,10 @@ Parent<span class="p">(</span><span class="n">tpe</span><span class="p">,</span>
 <p>JSON repsentation of the criterion
     <div class="highlight">
 <pre><span></span><code><span class="c1"># Query to search for tasks belonging to open cases with TLP=RED</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="s1">'case'</span><span class="p">,</span> <span class="n">And</span><span class="p">([</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="s1">'case'</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span>
     <span class="n">Eq</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'Open'</span><span class="p">),</span>
     <span class="n">Eq</span><span class="p">(</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="p">]))</span>
+<span class="p">))</span>
 </code></pre>
 </div>
     produces
