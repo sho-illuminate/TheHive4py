@@ -184,6 +184,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.create_alert_artifact">
+    create_alert_artifact()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.create_case">
     create_case()
   </a>
@@ -216,6 +221,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.delete_alert">
     delete_alert()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.delete_alert_artifact">
+    delete_alert_artifact()
   </a>
 </li>
 <li class="md-nav__item">
@@ -376,6 +386,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.update_alert">
     update_alert()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.update_alert_artifact">
+    update_alert_artifact()
   </a>
 </li>
 <li class="md-nav__item">
@@ -509,6 +524,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.create_alert_artifact">
+    create_alert_artifact()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.create_case">
     create_case()
   </a>
@@ -541,6 +561,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.delete_alert">
     delete_alert()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.delete_alert_artifact">
+    delete_alert_artifact()
   </a>
 </li>
 <li class="md-nav__item">
@@ -701,6 +726,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#thehive4py.api.TheHiveApi.update_alert">
     update_alert()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#thehive4py.api.TheHiveApi.update_alert_artifact">
+    update_alert_artifact()
   </a>
 </li>
 <li class="md-nav__item">
@@ -1139,6 +1169,178 @@ create_alert<span class="p">(</span><span class="bp">self</span><span class="p">
         <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Alert create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.create_alert_artifact">
+<code class="highlight language-python">
+create_alert_artifact<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">alert_artifact</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.api.TheHiveApi.create_alert_artifact" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Create an alert artifact</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alert_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Alert identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>alert_artifact</code></td>
+<td><code>AlertArtifact</code></td>
+<td>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.AlertArtifact">AlertArtifact</a></p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of an alert artifact</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertArtifactException</code></td>
+<td>
+<p>An error occured during alert artifact creation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is available in TheHive 4 ONLY</p>
+</div>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>1306
+1307
+1308
+1309
+1310
+1311
+1312
+1313
+1314
+1315
+1316
+1317
+1318
+1319
+1320
+1321
+1322
+1323
+1324
+1325
+1326
+1327
+1328
+1329
+1330
+1331
+1332
+1333
+1334
+1335
+1336
+1337
+1338
+1339
+1340
+1341
+1342
+1343
+1344
+1345</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_alert_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert_id</span><span class="p">,</span> <span class="n">alert_artifact</span><span class="p">):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Create an alert artifact</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        alert_id (str): Alert identifier</span>
+<span class="sd">        alert_artifact (AlertArtifact): Instance of [AlertArtifact][thehive4py.models.AlertArtifact]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of an alert artifact</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertArtifactException: An error occured during alert artifact creation</span>
+
+<span class="sd">    !!! Warning</span>
+<span class="sd">        This function is available in TheHive 4 ONLY</span>
+<span class="sd">    """</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isVersion</span><span class="p">(</span><span class="n">Version</span><span class="o">.</span><span class="n">THEHIVE_3</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">AlertArtifactException</span><span class="p">(</span><span class="s2">"This function is available in TheHive 4 ONLY"</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/</span><span class="si">{}</span><span class="s2">/artifact"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alert_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">alert_artifact</span><span class="o">.</span><span class="n">dataType</span> <span class="o">==</span> <span class="s1">'file'</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"dataType"</span><span class="p">,</span> <span class="s2">"message"</span><span class="p">,</span> <span class="s2">"tlp"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">,</span> <span class="s2">"ioc"</span><span class="p">,</span> <span class="s2">"sighted"</span><span class="p">,</span> <span class="s2">"ignoreSimilarity"</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">alert_artifact</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span>
+
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"_json"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)}</span>
+            <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">alert_artifact</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">AlertArtifactException</span><span class="p">(</span><span class="s2">"Alert artifact create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">alert_artifact</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">excludes</span><span class="o">=</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+
+            <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">AlertArtifactException</span><span class="p">(</span><span class="s2">"Alert artifact create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
 </td>
@@ -2160,6 +2362,142 @@ TheHive 4: Deleting alert requires a role including <code>manageAlert</code> per
         <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">AlertException</span><span class="p">(</span><span class="s2">"Alert deletion error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.delete_alert_artifact">
+<code class="highlight language-python">
+delete_alert_artifact<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">)</span> </code>
+<a class="headerlink" href="#thehive4py.api.TheHiveApi.delete_alert_artifact" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Deletes a TheHive alert artifact.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Id of the artifact to delete</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including true or false based on the action's success</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertArtifactException</code></td>
+<td>
+<p>An error occured during alert artifact deletion</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is available in TheHive 4 ONLY</p>
+</div>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>1347
+1348
+1349
+1350
+1351
+1352
+1353
+1354
+1355
+1356
+1357
+1358
+1359
+1360
+1361
+1362
+1363
+1364
+1365
+1366
+1367
+1368
+1369
+1370
+1371
+1372</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">delete_alert_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Deletes a TheHive alert artifact.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        artifact_id (str): Id of the artifact to delete</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including true or false based on the action's success</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertArtifactException: An error occured during alert artifact deletion</span>
+
+<span class="sd">    !!! Warning</span>
+<span class="sd">        This function is available in TheHive 4 ONLY</span>
+<span class="sd">    """</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isVersion</span><span class="p">(</span><span class="n">Version</span><span class="o">.</span><span class="n">THEHIVE_3</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">AlertArtifactException</span><span class="p">(</span><span class="s2">"This function is available in TheHive 4 ONLY"</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/artifact/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">artifact_id</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlertArtifactException</span><span class="p">(</span><span class="s2">"Alert artifact deletion error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </code></pre>
 </div>
 </td>
@@ -6471,6 +6809,179 @@ update_alert<span class="p">(</span><span class="bp">self</span><span class="p">
 </div>
 </div>
 <div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.update_alert_artifact">
+<code class="highlight language-python">
+update_alert_artifact<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">,</span> <span class="n">alert_artifact</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[])</span> </code>
+<a class="headerlink" href="#thehive4py.api.TheHiveApi.update_alert_artifact" title="Permanent link">#</a></h3>
+<div class="doc doc-contents">
+<p>Update an existing alert artifact</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact_id</code></td>
+<td><code></code></td>
+<td>
+<p>Artifact identifier</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>alert_artifact</code></td>
+<td><code>AlertArtifact</code></td>
+<td>
+<p>Instance of <a href="https://thehive-project.github.io/thehive4py/reference/models/#thehive4py.models.AlertArtifact">AlertArtifact</a></p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td><code>Array</code></td>
+<td>
+<p>Optional parameter, an array of fields names, the ones we want to update.</p>
+<p>Updatable fields are: [<code>tlp</code>, <code>ioc</code>, <code>sighted</code>, <code>tags</code>, <code>message</code>, <code>ignoreSimilarity</code>]</p>
+</td>
+<td><code>[]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response (requests.Response)</code></td>
+<td>
+<p>Response object including a JSON description of the updated alert artifact</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AlertArtifactException</code></td>
+<td>
+<p>An error occured during alert artifact update</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is available in TheHive 4 ONLY</p>
+</div>
+<details class="quote">
+<summary>Source code in <code>thehive4py/api.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>1374
+1375
+1376
+1377
+1378
+1379
+1380
+1381
+1382
+1383
+1384
+1385
+1386
+1387
+1388
+1389
+1390
+1391
+1392
+1393
+1394
+1395
+1396
+1397
+1398
+1399
+1400
+1401
+1402
+1403
+1404
+1405
+1406
+1407
+1408
+1409</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_alert_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">,</span> <span class="n">alert_artifact</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[]):</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    Update an existing alert artifact</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        artifact_id: Artifact identifier</span>
+<span class="sd">        alert_artifact (AlertArtifact): Instance of [AlertArtifact][thehive4py.models.AlertArtifact]</span>
+<span class="sd">        fields (Array): Optional parameter, an array of fields names, the ones we want to update.</span>
+
+<span class="sd">            Updatable fields are: [`tlp`, `ioc`, `sighted`, `tags`, `message`, `ignoreSimilarity`]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        response (requests.Response): Response object including a JSON description of the updated alert artifact</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AlertArtifactException: An error occured during alert artifact update</span>
+
+<span class="sd">    !!! Warning</span>
+<span class="sd">        This function is available in TheHive 4 ONLY</span>
+<span class="sd">    """</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isVersion</span><span class="p">(</span><span class="n">Version</span><span class="o">.</span><span class="n">THEHIVE_3</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">AlertArtifactException</span><span class="p">(</span><span class="s2">"This function is available in TheHive 4 ONLY"</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/alert/artifact/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">artifact_id</span><span class="p">)</span>
+
+    <span class="n">update_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'message'</span><span class="p">,</span> <span class="s1">'tlp'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">,</span> <span class="s1">'ioc'</span><span class="p">,</span> <span class="s1">'sighted'</span><span class="p">,</span> <span class="s1">'ignoreSimilarity'</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">alert_artifact</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_keys</span><span class="p">)}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">},</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CaseObservableException</span><span class="p">(</span><span class="s2">"Case observable update error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="thehive4py.api.TheHiveApi.update_case">
 <code class="highlight language-python">
 update_case<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[])</span> </code>
@@ -6692,7 +7203,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <tr>
 <td><code>CaseObservableException</code></td>
 <td>
-<p>An error occured during case observable creation</p>
+<p>An error occured during case observable update</p>
 </td>
 </tr>
 </tbody>
@@ -6757,7 +7268,7 @@ update_case_observable<span class="p">(</span><span class="bp">self</span><span 
 <span class="sd">        response (requests.Response): Response object including a JSON description of the updated case observable</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        CaseObservableException: An error occured during case observable creation</span>
+<span class="sd">        CaseObservableException: An error occured during case observable update</span>
 <span class="sd">    """</span>
 
     <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">"/api/case/artifact/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">observable_id</span><span class="p">)</span>

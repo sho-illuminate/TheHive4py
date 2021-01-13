@@ -848,12 +848,20 @@
 </tr>
 <tr>
 <td><code>data</code></td>
-<td><code>str</code></td>
+<td><code>str | (file, str</code></td>
 <td>
 <p>Observable's data:</p>
 <ul>
-<li>If the <code>dataType</code> field is set to <code>file</code>, the <code>data</code> field should contain a file path to be used as attachment</li>
-<li>Otherwise, the <code>data</code> value is the observable's value</li>
+<li>
+<p>If the <code>dataType</code> field is set to <code>file</code>, then there are two options:</p>
+<ul>
+<li><code>data</code> must be equal to a string representing the file's path</li>
+<li><code>data</code> must be equal to Tuple composed by an in memory file object, and the file name</li>
+</ul>
+</li>
+<li>
+<p>Otherwise, the <code>data</code> value is the observable's value</p>
+</li>
 </ul>
 </td>
 <td><em>required</em></td>
@@ -868,6 +876,10 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>ignoreSimilarity</code> attribute is available in TheHive 4 ONLY</p>
+</div>
 <div class="doc doc-children">
 </div>
 </div>
@@ -1183,12 +1195,20 @@ update<span class="p">(</span><span class="bp">self</span><span class="p">,</spa
 </tr>
 <tr>
 <td><code>data</code></td>
-<td><code>str</code></td>
+<td><code>str | (file, str</code></td>
 <td>
 <p>Observable's data:</p>
 <ul>
-<li>If the <code>dataType</code> field is set to <code>file</code>, the <code>data</code> field should contain a file path to be used as attachment</li>
-<li>Otherwise, the <code>data</code> value is the observable's value</li>
+<li>
+<p>If the <code>dataType</code> field is set to <code>file</code>, then there are two options:</p>
+<ul>
+<li><code>data</code> must be equal to a string representing the file's path</li>
+<li><code>data</code> must be equal to Tuple composed by an in memory file object, and the file name</li>
+</ul>
+</li>
+<li>
+<p>Otherwise, the <code>data</code> value is the observable's value</p>
+</li>
 </ul>
 </td>
 <td><em>required</em></td>

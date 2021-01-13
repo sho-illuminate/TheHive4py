@@ -207,6 +207,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#update-alert">
+    Update alert
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#search-alerts">
     Search alerts
   </a>
@@ -214,6 +219,21 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#promote-an-alert">
     Promote an alert
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-an-alert-artifact">
+    Create an Alert Artifact
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#update-an-alert-artifact">
+    Update an Alert Artifact
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#delete-an-alert-artifact">
+    Delete an Alert Artifact
   </a>
 </li>
 </ul>
@@ -279,6 +299,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#update-alert">
+    Update alert
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#search-alerts">
     Search alerts
   </a>
@@ -286,6 +311,21 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#promote-an-alert">
     Promote an alert
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-an-alert-artifact">
+    Create an Alert Artifact
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#update-an-alert-artifact">
+    Update an Alert Artifact
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#delete-an-alert-artifact">
+    Delete an Alert Artifact
   </a>
 </li>
 </ul>
@@ -309,14 +349,18 @@
 <span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
 <span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">Alert</span><span class="p">,</span> <span class="n">AlertArtifact</span><span class="p">,</span> <span class="n">CustomFieldHelper</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="s1">'http://127.0.0.1:9000'</span><span class="p">,</span> <span class="s1">'**YOUR_API_KEY**'</span><span class="p">)</span>
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
 
 <span class="c1"># Prepare observables</span>
+<span class="n">inmemory_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'sample.txt'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span>
 <span class="n">artifacts</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'ip'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">'8.8.8.8'</span><span class="p">),</span>
     <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'domain'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">'google.com'</span><span class="p">),</span>
     <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'file'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">'pic.png'</span><span class="p">),</span>
-    <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'file'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">'sample.txt'</span><span class="p">,</span> <span class="n">sighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'file'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">inmemory_file</span><span class="p">,</span> <span class="s1">'sample.txt'</span><span class="p">),</span> <span class="n">sighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="p">]</span>
 
 <span class="c1"># Prepare custom fields</span>
@@ -330,14 +374,15 @@
 <span class="c1"># Prepare the sample Alert</span>
 <span class="n">sourceRef</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
 <span class="n">alert</span> <span class="o">=</span> <span class="n">Alert</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'New Alert'</span><span class="p">,</span>
-              <span class="n">tlp</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-              <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'TheHive4Py'</span><span class="p">,</span> <span class="s1">'sample'</span><span class="p">],</span>
-              <span class="n">description</span><span class="o">=</span><span class="s1">'N/A'</span><span class="p">,</span>
-              <span class="nb">type</span><span class="o">=</span><span class="s1">'external'</span><span class="p">,</span>
-              <span class="n">source</span><span class="o">=</span><span class="s1">'instance1'</span><span class="p">,</span>
-              <span class="n">sourceRef</span><span class="o">=</span><span class="n">sourceRef</span><span class="p">,</span>
-              <span class="n">artifacts</span><span class="o">=</span><span class="n">artifacts</span><span class="p">,</span>
-              <span class="n">customFields</span><span class="o">=</span><span class="n">customFields</span><span class="p">)</span>
+    <span class="n">tlp</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'TheHive4Py'</span><span class="p">,</span> <span class="s1">'sample'</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">'N/A'</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">'external'</span><span class="p">,</span>
+    <span class="n">source</span><span class="o">=</span><span class="s1">'instance1'</span><span class="p">,</span>
+    <span class="n">sourceRef</span><span class="o">=</span><span class="n">sourceRef</span><span class="p">,</span>
+    <span class="n">artifacts</span><span class="o">=</span><span class="n">artifacts</span><span class="p">,</span>
+    <span class="n">customFields</span><span class="o">=</span><span class="n">customFields</span>
+<span class="p">)</span>
 
 <span class="c1"># Create the alert</span>
 <span class="k">try</span><span class="p">:</span>
@@ -349,29 +394,154 @@
 <span class="k">except</span> <span class="n">AlertException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">"Alert create error: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
+<span class="n">inmemory_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
 <span class="c1"># Exit the program</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="get-an-alert-by-id">Get an Alert by ID<a class="headerlink" href="#get-an-alert-by-id" title="Permanent link">#</a></h2>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>TODO</p>
-</div>
+<p>Get an alert identified by <code>ALERT_ID</code> and display its title</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_alert</span><span class="p">(</span><span class="n">ALERT_ID</span><span class="p">)</span>
+
+<span class="c1"># Print alert title</span>
+<span class="n">alert_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">alert_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'title'</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="update-alert">Update alert<a class="headerlink" href="#update-alert" title="Permanent link">#</a></h2>
+<p>Update an existing alert</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_alert</span><span class="p">(</span><span class="n">ALERT_ID</span><span class="p">)</span>
+
+<span class="c1"># Update description</span>
+<span class="n">alert_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">alert_data</span><span class="p">[</span><span class="s1">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Updated alert desciption...'</span>
+
+<span class="c1"># Update alert</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_alert</span><span class="p">(</span><span class="n">alert</span><span class="o">=</span><span class="n">Alert</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">alert_data</span><span class="p">),</span> <span class="n">alert_id</span><span class="o">=</span><span class="n">ALERT_ID</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">'description'</span><span class="p">])</span>
+</code></pre></div>
 <h2 id="search-alerts">Search alerts<a class="headerlink" href="#search-alerts" title="Permanent link">#</a></h2>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>TODO</p>
-</div>
+<p>Search for alerts with <code>HIGH</code> severity, <code>AMBER</code> TLP and with a title containing <code>MALSPAM</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">thehive4py.query</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="n">Tlp</span><span class="o">.</span><span class="n">AMBER</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="s1">'severity'</span><span class="p">,</span> <span class="n">Severity</span><span class="o">.</span><span class="n">HIGH</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+    <span class="n">Like</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'*MALSPAM*'</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">find_alerts</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+
+<span class="c1"># Print the JSON response </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</code></pre></div>
 <h2 id="promote-an-alert">Promote an alert<a class="headerlink" href="#promote-an-alert" title="Permanent link">#</a></h2>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>TODO</p>
+<p>Promote an alert identified by <code>ALERT_ID</code> to a case, using a case template named <code>MALSPAM</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">promote_alert_to_case</span><span class="p">(</span><span class="n">ALERT_ID</span><span class="p">,</span> <span class="n">case_template</span><span class="o">=</span><span class="s1">'MALSPAM'</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="create-an-alert-artifact">Create an Alert Artifact<a class="headerlink" href="#create-an-alert-artifact" title="Permanent link">#</a></h2>
+<p>Create and add an artifact to an existing alert identified by <code>ALERT_ID</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is available in TheHive 4 ONLY</p>
 </div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">Tlp</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="c1"># Instanciate a new domain artifact</span>
+<span class="n">artifact</span> <span class="o">=</span> <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'domain'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">'malicious-domain.tld'</span><span class="p">,</span> <span class="n">ignoreSimilarity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">create_alert_artifact</span><span class="p">(</span><span class="n">ALERT_ID</span><span class="p">,</span> <span class="n">artifact</span><span class="p">)</span>
+
+<span class="c1"># Instanciate a new file artifact</span>
+<span class="n">artifact</span> <span class="o">=</span> <span class="n">AlertArtifact</span><span class="p">(</span>
+    <span class="n">dataType</span><span class="o">=</span><span class="s1">'file'</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="s1">'malicious-file.exe'</span><span class="p">,</span> 
+    <span class="n">ignoreSimilarity</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+    <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">sighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">tlp</span><span class="o">=</span><span class="n">Tlp</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">create_alert_artifact</span><span class="p">(</span><span class="n">alert_id</span><span class="p">,</span> <span class="n">artifact</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="update-an-alert-artifact">Update an Alert Artifact<a class="headerlink" href="#update-an-alert-artifact" title="Permanent link">#</a></h2>
+<p>Update an existing artifact identified by <code>ALERT_ID</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is available in TheHive 4 ONLY</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+<span class="kn">from</span> <span class="nn">thehive4py.models</span> <span class="kn">import</span> <span class="n">Tlp</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="c1"># Create a new domain artifact</span>
+<span class="n">artifact</span> <span class="o">=</span> <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="s1">'domain'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">'malicious-domain.tld'</span><span class="p">,</span> <span class="n">ignoreSimilarity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ioc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_alert_artifact</span><span class="p">(</span><span class="n">ALERT_ID</span><span class="p">,</span> <span class="n">artifact</span><span class="p">)</span>
+
+<span class="c1"># Update its tlp, sighted and ignoreSimilarity flags</span>
+<span class="n">artifact_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">artifact_data</span><span class="p">[</span><span class="s1">'tlp'</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tlp</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">value</span>
+<span class="n">artifact_data</span><span class="p">[</span><span class="s1">'sighted'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">artifact_data</span><span class="p">[</span><span class="s1">'ignoreSimilarity'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">new_artifact</span> <span class="o">=</span> <span class="n">AlertArtifact</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">artifact_data</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_alert_artifact</span><span class="p">(</span><span class="n">artifact_data</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span> <span class="n">new_artifact</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">'tlp'</span><span class="p">,</span> <span class="s1">'ioc'</span><span class="p">,</span> <span class="s1">'ignoreSimilarity'</span><span class="p">])</span>
+</code></pre></div>
+<h2 id="delete-an-alert-artifact">Delete an Alert Artifact<a class="headerlink" href="#delete-an-alert-artifact" title="Permanent link">#</a></h2>
+<p>Delete an existing alert artifact identified by <code>ARTIFACT_ID</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is available in TheHive 4 ONLY</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">thehive4py.api</span> <span class="kn">import</span> <span class="n">TheHiveApi</span>
+
+<span class="n">THEHIVE_URL</span> <span class="o">=</span> <span class="s1">'http://127.0.0.1:9000'</span>
+<span class="n">THEHIVE_API_KEY</span> <span class="o">=</span> <span class="s1">'**YOUR_API_KEY**'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">TheHiveApi</span><span class="p">(</span><span class="n">THEHIVE_URL</span><span class="p">,</span> <span class="n">THEHIVE_API_KEY</span><span class="p">)</span>
+
+<span class="c1"># Delete alert artifact</span>
+<span class="n">api</span><span class="o">.</span><span class="n">delete_alert_artifact</span><span class="p">(</span><span class="n">ARTIFACT_ID</span><span class="p">)</span>
+</code></pre></div>
 <hr/>
 <div class="md-source-date">
 <small>
     
-      Last update: May 29, 2020 18:12:56
+      Last update: January 13, 2021 05:51:01
     
   </small>
 </div>
