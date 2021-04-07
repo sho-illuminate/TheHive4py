@@ -88,7 +88,7 @@ def Gt(field, value):
             {"_gt": {"tlp": 1}}
             ```
     """
-    return {'_gt': {field: value}}
+    return {'_field': field, '_value': value}
 
 
 def Gte(field, value):
