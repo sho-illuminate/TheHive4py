@@ -528,7 +528,7 @@ def Child(tpe, criterion):
             }
             ```
     """
-    return {"_field": '_child', "_value": {'_type': tpe, '_query': criterion}}
+    return {'_field': '_child', '_value': {'_type': tpe, '_query': criterion}}
 
 
 def Type(tpe):
