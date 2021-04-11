@@ -88,8 +88,8 @@ def Gt(field, value):
             {"_gt": {"tlp": 1}}
             ```
     """
-    return {'_gt': {field: value}}
-
+#    return {'_gt': {field: value}}
+    return {'_gt': {'_field': field, '_value': value}}
 
 def Gte(field, value):
     """
@@ -113,7 +113,8 @@ def Gte(field, value):
             {"_gte": {"tlp": 1}}
             ```
     """
-    return {'_gte': {field: value}}
+#    return {'_gte': {field: value}}
+    return {'_gte': {'_field': field, '_value': value}}
 
 def Lt(field, value):
     """
@@ -137,8 +138,8 @@ def Lt(field, value):
             {"_lt": {"tlp": 3}}
             ```
     """
-    return {'_lt': {field: value}}
-
+#    return {'_lt': {field: value}}
+    return {'_lt': {'_field': field, '_value': value}}
 
 def Lte(field, value):
     """
@@ -162,8 +163,8 @@ def Lte(field, value):
             {"_lte": {"tlp": 3}}
             ```
     """
-    return {'_lte': {field: value}}
-
+#    return {'_lte': {field: value}}
+    return {'_lte': {'_field': field, '_value': value}}
 
 def And(*criteria):
     """
