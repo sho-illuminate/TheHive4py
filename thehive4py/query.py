@@ -529,8 +529,10 @@ def Child(tpe, criterion):
             }
             ```
     """
-#    return {'_child': {'_type': tpe, '_query': criterion}}
-    return {'_field': '_child', '_value': {'_type': tpe, '_query': criterion}}
+    return {'_child': {'_type': tpe, '_query': criterion}}
+
+# Does not work. returns POST 400.
+#    return {'_field': '_child', '_value': {'_type': tpe, '_query': criterion}}
 
 
 def Type(tpe):
